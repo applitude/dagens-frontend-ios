@@ -8,4 +8,27 @@
 
 import Foundation
 
-
+class Dish: NSObject {
+    
+    private let title: String
+    private let detail: String?
+    private var allergies: [String]?
+    private let price: String
+    private let veggie: Bool
+    
+    init(title: String, detail: String?, allergies: [String], price: String, veggie: Bool) {
+        self.title = title
+        self.detail = detail
+        self.price = price
+        self.veggie = veggie
+        
+        if allergies.count != 0 {
+            self.allergies = allergies
+        }
+        
+        super.init()
+    }
+    
+    
+    
+}
