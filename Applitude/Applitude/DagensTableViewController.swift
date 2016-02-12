@@ -9,7 +9,11 @@
 import UIKit
 
 class DagensTableViewController: UITableViewController {
-
+    
+    // MARK: Properties
+    
+    var retter = ["pizza", "hamburger", "pasta"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,19 +33,21 @@ class DagensTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return retter.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("dagensCell", forIndexPath: indexPath) as! DagensTableViewCell
 
         // Configure the cell...
+        cell.navnLabel.text = retter[indexPath.row]
+        cell.allergenerLabel.text = "Allergener"
 
         return cell
     }

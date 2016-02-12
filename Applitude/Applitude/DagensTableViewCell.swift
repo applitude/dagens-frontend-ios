@@ -9,10 +9,10 @@
 import UIKit
 
 class DagensTableViewCell: UITableViewCell {
-
-    //MARK: Properties
-    var navn = "Hamburgertallerken"
-    var allergener =  ["hvete", "sennep", "egg", "sesamfrø"]
+    //MARK: Outlets
+    
+    @IBOutlet weak var navnLabel: UILabel!
+    @IBOutlet weak var allergenerLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
