@@ -113,8 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				6EF674F51C6E545B00B8C3F2 /* Dish.swift */,
-				9F937B741C6E67ED00AB947D /* Settings.swift */,
 				9F937B761C6E6A5600AB947D /* ServerManager.swift */,
+				9F937B741C6E67ED00AB947D /* Settings.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
