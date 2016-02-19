@@ -86,8 +86,8 @@
 		9F937B6F1C6E5F3F00AB947D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9F937B7C1C6E750A00AB947D /* SettingsTableViewController.swift */,
 				4F7C754B1C6E3DF3001EA5C8 /* DagensTableViewController.swift */,
+				9F937B7C1C6E750A00AB947D /* SettingsTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
