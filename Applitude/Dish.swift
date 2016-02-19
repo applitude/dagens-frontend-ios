@@ -19,7 +19,7 @@ class Dish: NSObject {
     init(title: String, detail: String?, allergies: [String], price: String, veggie: Bool) {
         self.title = title
         self.detail = detail
-        self.allergies = (allergies.count != 0) ? allergies : nil
+        self.allergies = allergies.count != 0 ? allergies : nil
         self.price = price
         self.veggie = veggie
         
