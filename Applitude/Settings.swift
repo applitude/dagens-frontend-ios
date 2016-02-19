@@ -18,7 +18,11 @@ class Settings: NSObject {
         static let veggie = "veggie"
     }
     
-    private var showOnlyVeggies = NSUserDefaults.standardUserDefaults().boolForKey(SettingsKeys.veggie)
-    
+    private var settings: [Bool] = [
+        
+        NSUserDefaults.standardUserDefaults().boolForKey(SettingsKeys.veggie),
+        
+        
+    ]
     
 }

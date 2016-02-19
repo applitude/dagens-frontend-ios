@@ -15,9 +15,12 @@ class SettingsTableViewController: UITableViewController {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+<<<<<<< HEAD
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+=======
+>>>>>>> applitude/master
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,11 +28,18 @@ class SettingsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+<<<<<<< HEAD
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
+=======
+    // MARK: Table view data source
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+>>>>>>> applitude/master
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

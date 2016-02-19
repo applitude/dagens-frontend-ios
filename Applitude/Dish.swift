@@ -11,24 +11,33 @@ import Foundation
 class Dish: NSObject {
     
     private let title: String
-    private let detail: String?
-    private var allergies: [String]?
-    private let price: String
     private let veggie: Bool
+    private let price: String
+    private let allergies: [String]?
     
-    init(title: String, detail: String?, allergies: [String], price: String, veggie: Bool) {
+    init(title: String, price: String, veggie: Bool, allergies: [String]) {
         self.title = title
-        self.detail = detail
         self.price = price
         self.veggie = veggie
-        
-        if allergies.count != 0 {
-            self.allergies = allergies
-        }
+        self.allergies = allergies.count != 0 ? allergies : nil
         
         super.init()
     }
     
+    func getTitle() -> String {
+        return title
+    }
     
+    func getPrice() -> String {
+        return price
+    }
+    
+    func getAllergies() -> [String]? {
+        return allergies
+    }
+    
+    func isVeggie() -> Bool {
+        return veggie
+    }
     
 }
