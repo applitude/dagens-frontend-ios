@@ -16,13 +16,18 @@ class Settings: NSObject {
     
     private struct SettingsKeys {
         static let veggie = "veggie"
+        static let gluten = "gluten"
     }
     
-    private var settings: [Bool] = [
+    private var settings: [(title: String, value: Bool)] = [
         
-        NSUserDefaults.standardUserDefaults().boolForKey(SettingsKeys.veggie),
-        
+        (SettingsKeys.veggie, NSUserDefaults.standardUserDefaults().boolForKey(SettingsKeys.veggie)),
+        (SettingsKeys.gluten, NSUserDefaults.standardUserDefaults().boolForKey(SettingsKeys.gluten))
         
     ]
+   
+    func getSettingAtIndex(index:Int) -> (title: String, value: Bool) {
+        return settings[index]
+    }
     
 }

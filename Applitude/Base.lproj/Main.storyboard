@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HH6-8B-EsP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HH6-8B-EsP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -15,13 +15,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="3hA-o2-IK5">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="3hA-o2-IK5" customClass="SettingsTableViewCell" customModule="Applitude" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hA-o2-IK5" id="YsB-eM-Sq2">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FnM-dh-tmu">
+                                            <rect key="frame" x="541" y="11" width="51" height="21.5"/>
+                                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lX-nI-v6N">
+                                            <rect key="frame" x="17" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6lX-nI-v6N" firstAttribute="leading" secondItem="YsB-eM-Sq2" secondAttribute="leading" constant="17" id="FwY-yo-hvu"/>
+                                        <constraint firstAttribute="bottom" secondItem="FnM-dh-tmu" secondAttribute="bottom" constant="11" id="ONE-86-If1"/>
+                                        <constraint firstAttribute="bottom" secondItem="6lX-nI-v6N" secondAttribute="bottom" constant="11.5" id="PIY-fJ-Uyt"/>
+                                        <constraint firstItem="6lX-nI-v6N" firstAttribute="top" secondItem="YsB-eM-Sq2" secondAttribute="top" constant="11" id="Ran-WP-cby"/>
+                                        <constraint firstAttribute="trailing" secondItem="FnM-dh-tmu" secondAttribute="trailing" constant="10" id="qGw-m7-j2g"/>
+                                        <constraint firstItem="FnM-dh-tmu" firstAttribute="top" secondItem="YsB-eM-Sq2" secondAttribute="top" constant="11" id="vXi-gN-jmT"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="settingsLabel" destination="6lX-nI-v6N" id="hYg-Z8-RgI"/>
+                                    <outlet property="settingsSwitch" destination="FnM-dh-tmu" id="V3B-FU-dhl"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
