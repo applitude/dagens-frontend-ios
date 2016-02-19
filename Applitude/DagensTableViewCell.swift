@@ -9,9 +9,8 @@
 import UIKit
 
 class DagensTableViewCell: UITableViewCell {
-    //MARK: Outlets
     
-    @IBOutlet weak var navnLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet weak var allergenerLabel: UILabel!
     
     override func awakeFromNib() {
@@ -23,6 +22,10 @@ class DagensTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func loadCell(dish: Dish) {
+        titleLabel.text = dish.getTitle()
     }
     
 }
