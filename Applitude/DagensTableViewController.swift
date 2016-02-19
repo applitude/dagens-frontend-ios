@@ -10,17 +10,13 @@ import UIKit
 
 class DagensTableViewController: UITableViewController {
     
-    // MARK: Properties
-    
     private var selectedIndexPath: NSIndexPath?
-    
-    var retter = ["pizza", "hamburger", "pasta"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        // Preserve selection between presentations
+        self.clearsSelectionOnViewWillAppear = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,15 +31,14 @@ class DagensTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return retter.count
+        return ServerManager.sharedInstance.getNumberOfDishes()
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("dagensCell", forIndexPath: indexPath) as! DagensTableViewCell
 
         // Configure the cell...
-        cell.navnLabel.text = retter[indexPath.row]
-        cell.allergenerLabel.text = "Allergener"
+        cell.loadCell(ServerManager.sharedInstance.getDishAtIndex(indexPath.row))
 
         return cell
     }
