@@ -14,12 +14,14 @@ class Dish: NSObject {
     private let veggie: Bool
     private let price: String
     private let allergies: [String]?
+    private let restaurant: Restaurant
     
-    init(title: String, price: String, veggie: Bool, allergies: [String]) {
+    init(title: String, price: String, veggie: Bool, allergies: [String], restaurant: Restaurant) {
         self.title = title
         self.price = price
         self.veggie = veggie
         self.allergies = allergies.count != 0 ? allergies : nil
+        self.restaurant = restaurant
         
         super.init()
     }
@@ -34,6 +36,10 @@ class Dish: NSObject {
     
     func getAllergies() -> [String]? {
         return allergies
+    }
+    
+    func getRestaurant() -> Restaurant {
+        return restaurant
     }
     
     func isVeggie() -> Bool {
