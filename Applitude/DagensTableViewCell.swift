@@ -11,7 +11,7 @@ import UIKit
 class DagensTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet weak var allergenerLabel: UILabel!
+    @IBOutlet var allergiesLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +26,7 @@ class DagensTableViewCell: UITableViewCell {
     
     func loadCell(dish: Dish) {
         titleLabel.text = dish.getTitle()
+        allergiesLabel.text = dish.getAllergiesString()
     }
     
 }
