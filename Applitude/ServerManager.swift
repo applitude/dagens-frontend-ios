@@ -44,8 +44,8 @@ class ServerManager: NSObject {
         
         for restaurant in restaurants {
             dishes.append(Dish(title: "Pulled Pork Burrito med krydret ris og bønner", price: "13,- pr. hg.", veggie: false, allergies: ["NA"], restaurant: restaurant))
-            dishes.append(Dish(title: "Enchilada de Pollo med salsa verde og salatbar", price: "13,- pr. hg.", veggie: false, allergies: ["NA"], restaurant: restaurant))
-            dishes.append(Dish(title: "Buffet med nystekt kylling, sei arrabiata og ovnsbakte amadinepoteter", price: "13,- pr. hg.", veggie: false, allergies: ["NA"], restaurant: restaurant))
+            dishes.append(Dish(title: "Enchilada de Pollo med salsa verde og salatbar", price: "13,- pr. hg.", veggie: false, allergies: ["Melk, nøtter"], restaurant: restaurant))
+            dishes.append(Dish(title: "Buffet med nystekt kylling, sei arrabiata og ovnsbakte amadinepoteter", price: "13,- pr. hg.", veggie: false, allergies: ["Egg"], restaurant: restaurant))
             dishes.append(Dish(title: "Enchilada de Frijoles med salsa verde og salatbar.", price: "13,- pr. hg.", veggie: true, allergies: ["NA"], restaurant: restaurant))
         }
         
