@@ -6,7 +6,7 @@
 //  Copyright © 2016 Applitude. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Settings: NSObject {
     
@@ -18,6 +18,8 @@ class Settings: NSObject {
         static let veggie = "veggie"
         static let gluten = "gluten"
     }
+    
+    var themeColor = UIColor(red: 251/255.0, green: 84/255.0, blue: 110/255.0, alpha: 1)
     
     private var settings: [(title: String, value: Bool)] = [
         

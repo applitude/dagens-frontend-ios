@@ -64,9 +64,9 @@ class DagensTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        let contractedHeight: CGFloat = 90
-        let expandedHeight: CGFloat = 400
-        
+        let contractedHeight: CGFloat = 115
+        let expandedHeight: CGFloat = 300
+
         return indexPath == selectedIndexPath ? expandedHeight : contractedHeight
     }
 
