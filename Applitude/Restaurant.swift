@@ -10,6 +10,8 @@ import UIKit
 
 class Restaurant: NSObject {
     
+    // TODO: Opening hours
+    
     private let title: String
     private let street: String
     private let postalCode: String

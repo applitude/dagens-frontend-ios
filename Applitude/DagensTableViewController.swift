@@ -5,11 +5,16 @@
 //  Created by Anders Orset on 12.02.2016.
 //  Copyright © 2016 Applitude. All rights reserved.
 //
+//  The app's main view.
+//
+//  Detailed explanation of the cell expansion/contraction: stackoverflow.com/a/29851944.
+//
 
 import UIKit
 
 class DagensTableViewController: UITableViewController {
     
+    // Keeps track of which cell, if any, is currently expanded
     private var selectedIndexPath: NSIndexPath?
     
     override func viewDidLoad() {
@@ -43,7 +48,7 @@ class DagensTableViewController: UITableViewController {
         return cell
     }
     
-    // MARK: Table view delegate
+    // MARK: Table view delegate (manages cell expansion/contraction)
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -59,23 +64,11 @@ class DagensTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        let contractedHeight: CGFloat = 90
-        let expandedHeight: CGFloat = 400
-        
+        let contractedHeight: CGFloat = 115
+        let expandedHeight: CGFloat = 300
+
         return indexPath == selectedIndexPath ? expandedHeight : contractedHeight
     }
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
 
     /*
     // MARK: - Navigation

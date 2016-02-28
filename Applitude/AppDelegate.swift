@@ -20,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Start fetching data from S3
         ServerManager.sharedInstance.requestDishes()
         
+        // Hide shadow line on bottom of navigation bar
+        let navigationController = self.window!.rootViewController! as! UINavigationController
+        
+        if let shadowLine = navigationController.navigationBar.subviews[0].subviews[0] as? UIImageView {
+            shadowLine.hidden = true
+        }
+        
         return true
     }
 

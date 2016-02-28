@@ -38,6 +38,21 @@ class Dish: NSObject {
         return allergies
     }
     
+    func getAllergiesString() -> String? {
+        
+        guard allergies != nil && allergies!.count != 0 else {
+            return nil
+        }
+        
+        var allergiesString = "Allergener: " + allergies![0]
+        
+        for index in 1 ..< allergies!.count {
+            allergiesString += ", " + allergies![index]
+        }
+        
+        return allergiesString
+    }
+    
     func getRestaurant() -> Restaurant {
         return restaurant
     }
