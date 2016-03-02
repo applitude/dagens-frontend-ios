@@ -17,6 +17,13 @@ class DagensTableViewController: UITableViewController {
     // Keeps track of which cell, if any, is currently expanded
     private var selectedIndexPath: NSIndexPath?
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Reloads all cells and their heights
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
