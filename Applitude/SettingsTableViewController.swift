@@ -9,7 +9,12 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
-
+    
+    @IBAction func cellSwitchValueChanged(sender: UISwitch) {
+        
+        Settings.sharedInstance.setSettingAtIndex(sender.tag, value: sender.on)
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +36,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return Settings.sharedInstance.getNumberOfSettings()
     }
 
     
@@ -39,11 +44,10 @@ class SettingsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell", forIndexPath: indexPath) as! SettingsTableViewCell
 
         // Configure the cell...
-        cell.loadCell(Settings.sharedInstance.getSettingAtIndex(indexPath.row))
+        cell.loadCell(indexPath.row)
 
         return cell
     }
-
 
     /*
     // Override to support conditional editing of the table view.

@@ -13,6 +13,7 @@ class DagensTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var restaurantLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
+    @IBOutlet var circleImageView: UIImageView!
     
     @IBOutlet var firstAllergyImageView: UIImageView!
     @IBOutlet var secondAllergyImageView: UIImageView!
@@ -21,9 +22,9 @@ class DagensTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.setColors(Settings.sharedInstance.themeColor)
-        // Initialization code
         
+        // Initialization code
+        self.setColors()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -35,11 +36,16 @@ class DagensTableViewCell: UITableViewCell {
     func loadCell(dish: Dish) {
         //titleLabel.text = dish.getTitle()
         //allergiesLabel.text = dish.getAllergiesString()
+        
+        setColors()
     }
     
-    func setColors(color: UIColor) {
-        restaurantLabel.textColor = color
+    func setColors() {
+        let color = Settings.sharedInstance.themeColor
         
+        restaurantLabel.textColor = color
+        distanceLabel.textColor = color
+        // circleImageView change image
     }
     
 }

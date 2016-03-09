@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Hide shadow line on bottom of navigation bar
         let navigationController = self.window!.rootViewController! as! UINavigationController
+        navigationController.navigationBar.barTintColor = Settings.sharedInstance.themeColor
         
         if let shadowLine = navigationController.navigationBar.subviews[0].subviews[0] as? UIImageView {
             shadowLine.hidden = true
@@ -51,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

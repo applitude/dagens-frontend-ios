@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--SettingsTableViewC-->
@@ -10,20 +11,23 @@
             <objects>
                 <tableViewController id="oI7-w4-Oml" userLabel="SettingsTableViewC" customClass="SettingsTableViewController" customModule="Applitude" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qro-Xf-dW3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="3hA-o2-IK5" customClass="SettingsTableViewCell" customModule="Applitude" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hA-o2-IK5" id="YsB-eM-Sq2">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FnM-dh-tmu">
-                                            <rect key="frame" x="541" y="11" width="51" height="21.5"/>
+                                            <rect key="frame" x="541" y="11" width="51" height="22"/>
                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                            <connections>
+                                                <action selector="cellSwitchValueChanged:" destination="oI7-w4-Oml" eventType="valueChanged" id="MaY-Dl-iwl"/>
+                                            </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lX-nI-v6N">
                                             <rect key="frame" x="17" y="11" width="42" height="21"/>
@@ -52,6 +56,7 @@
                             <outlet property="delegate" destination="oI7-w4-Oml" id="Cct-we-z9h"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Innstillinger" id="R13-Nd-ZWR"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dX2-XJ-mfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,12 +67,12 @@
             <objects>
                 <tableViewController id="Lir-lY-Q4a" userLabel="DagensTableViewC" customClass="DagensTableViewController" customModule="Applitude" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" id="48J-wN-ide">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="dagensCell" id="RsG-3n-3jx" customClass="DagensTableViewCell" customModule="Applitude" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="300"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RsG-3n-3jx" id="lZE-Dh-ior">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
@@ -84,13 +89,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="115"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ribollita med parmesan og krutonger." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlM-VF-tZ6" userLabel="titleLabel">
-                                                    <rect key="frame" x="15" y="47" width="450" height="21.5"/>
+                                                    <rect key="frame" x="15" y="47.5" width="487" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREDERIKKE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGl-FH-rvj" userLabel="restaurantLabel">
-                                                    <rect key="frame" x="15" y="29" width="180" height="14.5"/>
+                                                    <rect key="frame" x="15" y="29.5" width="180" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="180" id="FS8-AP-6wP"/>
                                                     </constraints>
@@ -98,32 +103,28 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EeT-I0-fVd" userLabel="allergiesView">
-                                                    <rect key="frame" x="15" y="71" width="80" height="15"/>
+                                                    <rect key="frame" x="15" y="72" width="80" height="15"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l9V-mu-q3K" userLabel="firstAllergyImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eggs" translatesAutoresizingMaskIntoConstraints="NO" id="l9V-mu-q3K" userLabel="firstAllergyImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
-                                                            <color key="backgroundColor" red="0.6588235294" green="0.0" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="iuV-pM-2LQ"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6mu-jV-VB3" userLabel="thirdAllergyImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nuts" translatesAutoresizingMaskIntoConstraints="NO" id="6mu-jV-VB3" userLabel="thirdAllergyImageView">
                                                             <rect key="frame" x="44" y="0.0" width="15" height="15"/>
-                                                            <color key="backgroundColor" red="0.3843137324" green="0.66666668650000005" blue="0.57254904510000004" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="rp6-Fk-WZw"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X7C-tT-sC5" userLabel="plusAllergyImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soy" translatesAutoresizingMaskIntoConstraints="NO" id="X7C-tT-sC5" userLabel="plusAllergyImageView">
                                                             <rect key="frame" x="66" y="0.0" width="15" height="15"/>
-                                                            <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="jeN-q3-3YQ"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QX2-8j-krn" userLabel="secondAllergyImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="milk" translatesAutoresizingMaskIntoConstraints="NO" id="QX2-8j-krn" userLabel="secondAllergyImageView">
                                                             <rect key="frame" x="22" y="0.0" width="15" height="15"/>
-                                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="BWh-l4-Hl9"/>
                                                             </constraints>
@@ -147,22 +148,21 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZ0-5N-mEL" userLabel="distanceView">
-                                                    <rect key="frame" x="485" y="8" width="100" height="100"/>
+                                                    <rect key="frame" x="522" y="26.5" width="63" height="63"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-92-XBN" userLabel="distanceLabel">
-                                                            <rect key="frame" x="29" y="40" width="42" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0,5km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-92-XBN" userLabel="distanceLabel">
+                                                            <rect key="frame" x="10.5" y="22" width="42" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RN7-PW-Guf" userLabel="circleImageView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dagens-cell-circle" translatesAutoresizingMaskIntoConstraints="NO" id="RN7-PW-Guf" userLabel="circleImageView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="63" height="63"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="5Ef-tx-OKZ"/>
-                                                        <constraint firstAttribute="height" constant="100" id="Aq8-6y-TBK"/>
+                                                        <constraint firstAttribute="width" constant="63" id="5Ef-tx-OKZ"/>
+                                                        <constraint firstAttribute="width" secondItem="bZ0-5N-mEL" secondAttribute="height" id="9ue-9R-8Xk"/>
                                                         <constraint firstItem="RN7-PW-Guf" firstAttribute="top" secondItem="bZ0-5N-mEL" secondAttribute="top" id="CTH-jL-y3f"/>
                                                         <constraint firstAttribute="trailing" secondItem="RN7-PW-Guf" secondAttribute="trailing" id="Ngz-c3-H5f"/>
                                                         <constraint firstItem="I1h-92-XBN" firstAttribute="centerX" secondItem="bZ0-5N-mEL" secondAttribute="centerX" id="kDQ-te-hnm"/>
@@ -198,6 +198,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="circleImageView" destination="RN7-PW-Guf" id="gAW-Bc-0KK"/>
                                     <outlet property="distanceLabel" destination="I1h-92-XBN" id="ub2-BK-qA0"/>
                                     <outlet property="firstAllergyImageView" destination="l9V-mu-q3K" id="AVc-Kj-G0j"/>
                                     <outlet property="plusAllergyImageView" destination="X7C-tT-sC5" id="BRw-d2-G4m"/>
@@ -214,7 +215,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Dagens" id="Zip-0m-9Qx">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="5xh-fb-deW">
+                        <barButtonItem key="backBarButtonItem" title=" " id="7Rq-rr-8c0"/>
+                        <barButtonItem key="rightBarButtonItem" image="dots" id="5xh-fb-deW">
                             <connections>
                                 <segue destination="oI7-w4-Oml" kind="show" id="yXD-iB-RiL"/>
                             </connections>
@@ -230,9 +232,11 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HH6-8B-EsP" userLabel="RootNavC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Opc-Ow-hVK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Opc-Ow-hVK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.99451559782028198" green="0.32067328691482544" blue="0.42135637998580933" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -244,4 +248,12 @@
             <point key="canvasLocation" x="423" y="-342"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dagens-cell-circle" width="71" height="71"/>
+        <image name="dots" width="33" height="33"/>
+        <image name="eggs" width="33" height="33"/>
+        <image name="milk" width="33" height="33"/>
+        <image name="nuts" width="33" height="33"/>
+        <image name="soy" width="33" height="33"/>
+    </resources>
 </document>
