@@ -18,8 +18,7 @@ class DataManager: NSObject {
     
     private var restController = RESTController()
     
-    private var restaurants = [Restaurant]()
-    private var dishes = [Dish]()
+    var dishes = [Dish]()
     
     // MARK: Getters
     
@@ -35,8 +34,6 @@ class DataManager: NSObject {
     
     func fetchTodaysDinner() {
         restController.requestDishes()
-        restaurants = restController.getRestaurants()
-        dishes = restController.getDishes()
     }
     
 }

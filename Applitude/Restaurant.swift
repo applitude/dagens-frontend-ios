@@ -13,20 +13,20 @@ class Restaurant: NSObject {
     // TODO: Opening hours
     
     private let title: String
-    private let street: String
-    private let postalCode: String
-    private let city: String
+    private let address: String
+    private let campus: String
+    private let coordinates: (lat: Double, long: Double)
     
-    init(title: String, street: String, postalCode: String, city: String) {
+    init(title: String, address: String, campus: String, coordinates: (lat: Double, long: Double)) {
         self.title = title
-        self.street = street
-        self.postalCode = postalCode
-        self.city = city
+        self.address = address
+        self.campus = campus
+        self.coordinates = coordinates
         
         super.init()
     }
     
-    func getTitle() -> String {
+    /*func getTitle() -> String {
         return title
     }
     
@@ -40,6 +40,6 @@ class Restaurant: NSObject {
     
     func getCity() -> String {
         return city
-    }
+    }*/
 
 }
