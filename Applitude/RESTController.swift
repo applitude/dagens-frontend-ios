@@ -1,34 +1,17 @@
 //
-//  ServerManager.swift
+//  RESTController.swift
 //  Applitude
 //
-//  Created by Gaute Solheim on 12.02.2016.
+//  Created by Gaute Solheim on 16.03.2016.
 //  Copyright © 2016 Applitude. All rights reserved.
 //
-//  Handles all communication with dagens-backend (effectively Amazon S3), and saves the received data locally.
-//
 
-import Foundation
+import UIKit
 
-class ServerManager: NSObject {
+class RESTController: NSObject {
     
-    // Singleton: Available globally, max. one instance
-    static let sharedInstance = ServerManager()
-    private override init() {}
-    
-    private var timestamp: Int = 0
     private var restaurants = [Restaurant]()
     private var dishes = [Dish]()
-    
-    // SECTION: Methods
-    
-    func getNumberOfDishes() -> Int {
-        return dishes.count
-    }
-    
-    func getDishAtIndex(index: Int) -> Dish {
-        return dishes[index]
-    }
     
     func requestDishes() {
         
@@ -51,4 +34,12 @@ class ServerManager: NSObject {
         
     }
     
+    func getRestaurants() -> [Restaurant] {
+        return restaurants
+    }
+    
+    func getDishes() -> [Dish] {
+        return dishes
+    }
+
 }

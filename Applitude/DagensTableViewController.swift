@@ -43,14 +43,14 @@ class DagensTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ServerManager.sharedInstance.getNumberOfDishes()
+        return DataManager.sharedInstance.getNumberOfDishes()
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("dagensCell", forIndexPath: indexPath) as! DagensTableViewCell
 
         // Configure the cell...
-        cell.loadCell(ServerManager.sharedInstance.getDishAtIndex(indexPath.row))
+        cell.loadCell(DataManager.sharedInstance.getDishAtIndex(indexPath.row))
 
         return cell
     }

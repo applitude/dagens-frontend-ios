@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Start fetching data from S3
-        ServerManager.sharedInstance.requestDishes()
+        DataManager.sharedInstance.fetchTodaysDinner()
         
         // Hide shadow line on bottom of navigation bar
         let navigationController = self.window!.rootViewController! as! UINavigationController
