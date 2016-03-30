@@ -17,13 +17,6 @@ class DagensTableViewController: UITableViewController {
     // Keeps track of which cell, if any, is currently expanded
     private var expandedIndexPath: NSIndexPath?
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Reloads all cells and their heights
-        self.tableView.reloadData()
-    }
-    
     // MARK: View controller life cycle
     
     override func viewDidLoad() {
@@ -31,6 +24,9 @@ class DagensTableViewController: UITableViewController {
 
         // Preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
+        
+        // Register to receive notifications that we'll post when the dishes collection is updated
+        NSNotificationCenter.defaultCenter().addObserver(tableView, selector: #selector(UITableView.reloadData), name: "dishesUpdated", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
