@@ -6,13 +6,14 @@ Problemet appen løser er å få rask og oversiktlig info om dagens middag på S
 
 ## Funksjoner
 
-- [x] Sende HTTP-request til [dagens-backend](http://github.com/applitude/dagens-backend) for informasjon om matretter og restaurantene disse tilhører
-- [x] Parse den mottate JSON-fila til Dish- og Restaurant-objekter
-- [x] Lagre Dish- og Restaurant-objekter i egnet datastruktur (Dish-array med Restaurant-pekere i Dish-objektene)
+- [x] Sende HTTP-request til [dagens-backend](http://github.com/applitude/dagens-backend) for informasjon om matretter og restaurantene disse tilhører.
+- [x] Parse den mottate JSON-fila til Dish- og Restaurant-objekter.
+- [x] Lagre Dish- og Restaurant-objekter i egnet datastruktur (Dish-array med Restaurant-referanser i Dish-objektene).
 - [x] Representere den nevnte Dish-arrayen i en UITableView.
-- [x] Ekspandere table view-cellene med mer info og knapp for kart når de trykkes på.
+- [ ] Ekspandere table view-cellene med mer info og knapp for kart når de trykkes på.
 - [ ] Bruke Google Maps SDK for å hente informasjon om hvor langt restaurantene er fra brukerne, og sortere Dish-arrayen etter dette.
 - [ ] Lage en innstillinger-side med valg om å skjule retter som inneholder gitte allergener.
+- [ ] Masse kule funksjoner vi vil lære oss å implementere.
 
 ## Fremgang
 
