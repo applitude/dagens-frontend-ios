@@ -15,20 +15,18 @@ import UIKit
 class DagensTableViewController: UITableViewController {
     
     // Keeps track of which cell, if any, is currently expanded
-    private var selectedIndexPath: NSIndexPath?
+    private var expandedIndexPath: NSIndexPath?
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Reloads all cells and their heights
-        self.tableView.reloadData()
-    }
+    // MARK: View controller life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
+        
+        // Register to receive notifications that we'll post when the dishes collection is updated
+        NSNotificationCenter.defaultCenter().addObserver(tableView, selector: #selector(UITableView.reloadData), name: "dishesUpdated", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,22 +57,21 @@ class DagensTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        // if: Selected expanded cell
-        if selectedIndexPath == indexPath {
-            selectedIndexPath = nil
+        // if: User selected expanded cell
+        if expandedIndexPath == indexPath {
+            expandedIndexPath = nil
         } else {
-            selectedIndexPath = indexPath
+            expandedIndexPath = indexPath
         }
         
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
         let contractedHeight: CGFloat = 115
         let expandedHeight: CGFloat = 300
 
-        return indexPath == selectedIndexPath ? expandedHeight : contractedHeight
+        return indexPath == expandedIndexPath ? expandedHeight : contractedHeight
     }
 
     /*

@@ -18,7 +18,11 @@ class DataManager: NSObject {
     
     private var restController = RESTController()
     
-    var dishes = [Dish]()
+    var dishes = [Dish]() {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
+        }
+    }
     
     // MARK: Getters
     
