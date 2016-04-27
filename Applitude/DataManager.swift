@@ -16,7 +16,7 @@ class DataManager: NSObject {
     static let sharedInstance = DataManager()
     private override init() {}
     
-    private var restController = RESTController()
+    private var httpController = HTTPController()
     
     var dishes = [Dish]() {
         didSet {
@@ -37,7 +37,7 @@ class DataManager: NSObject {
     // MARK: RESTController
     
     func fetchTodaysDinner() {
-        restController.requestDishes()
+        httpController.requestDishes()
     }
     
 }
