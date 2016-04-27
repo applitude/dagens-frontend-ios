@@ -35,6 +35,7 @@ class DagensTableViewCell: UITableViewCell {
     
     func loadCell(dish: Dish) {
         titleLabel.text = dish.getTitle()
+        restaurantLabel.text = dish.getRestaurant().getTitle()
         //allergiesLabel.text = dish.getAllergiesString()
         
         setColors()
