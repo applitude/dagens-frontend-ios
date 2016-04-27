@@ -23,6 +23,13 @@ class DagensTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mapView: GMSMapView!
     
+    func loadMap(coordinates: (lat: Double, long: Double)) {
+        mapView.myLocationEnabled = true
+        mapView.animateToLocation(CLLocationCoordinate2DMake(coordinates.lat, coordinates.long))
+        mapView.animateToZoom(15)
+        mapView.myLocation
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -40,6 +47,7 @@ class DagensTableViewCell: UITableViewCell {
         titleLabel.text = dish.getTitle()
         restaurantLabel.text = dish.getRestaurant().getTitle()
         //allergiesLabel.text = dish.getAllergiesString()
+        self.loadMap(dish.getRestaurant().getCoordinates())
         
         setColors()
     }
