@@ -10,36 +10,46 @@ import UIKit
 
 class Restaurant: NSObject {
     
-    // TODO: Opening hours
-    
     private let title: String
     private let address: String
     private let campus: String
     private let coordinates: (lat: Double, long: Double)
+    private let opening: [(dayRange: String, hours: String)]
+    private let extraOpening: String?
     
-    init(title: String, address: String, campus: String, coordinates: (lat: Double, long: Double)) {
+    init(title: String, address: String, campus: String, coordinates: (lat: Double, long: Double), opening: [(dayRange: String, hours: String)], extraOpening: String?) {
         self.title = title
         self.address = address
         self.campus = campus
         self.coordinates = coordinates
+        self.opening = opening
+        self.extraOpening = extraOpening
         
         super.init()
     }
     
-    /*func getTitle() -> String {
+    func getTitle() -> String {
         return title
     }
     
-    func getStreet() -> String {
-        return street
+    func getAddress() -> String {
+        return address
     }
     
-    func getPostalCode() -> String {
-        return postalCode
+    func getCampus() -> String {
+        return campus
     }
     
-    func getCity() -> String {
-        return city
-    }*/
+    func getCoordinates() -> (lat: Double, long: Double) {
+        return coordinates
+    }
+    
+    func getOpening() -> [(dayRange: String, hours: String)] {
+        return opening
+    }
+    
+    func getExtraOpening() -> String? {
+        return extraOpening
+    }
 
 }

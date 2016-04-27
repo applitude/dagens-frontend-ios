@@ -175,6 +175,7 @@
 				4F7C75341C6E3AF4001EA5C8 /* Resources */,
 				D019B6B393DD9F76E5DEDF39 /* 📦 Embed Pods Frameworks */,
 				9B4ADFD82F61077A37708F32 /* 📦 Copy Pods Resources */,
+				F490C35103F2730369824D8E /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,7 +198,7 @@
 				TargetAttributes = {
 					4F7C75351C6E3AF4001EA5C8 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 8HE3Y953TS;
+						DevelopmentTeam = T83284H5PN;
 					};
 				};
 			};
@@ -271,6 +272,21 @@
 			inputPaths = (
 			);
 			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Applitude/Pods-Applitude-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F490C35103F2730369824D8E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
