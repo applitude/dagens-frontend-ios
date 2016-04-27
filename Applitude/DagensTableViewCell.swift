@@ -9,6 +9,15 @@
 import UIKit
 import GoogleMaps
 
+struct AllergyIcons {
+    static var eggs = UIImage(named: "eggs")!
+    static var milk = UIImage(named: "milk")!
+    static var nuts = UIImage(named: "nuts")!
+    static var soy = UIImage(named: "soy")!
+    static var wheat = UIImage(named: "wheat")!
+    static var unknown = UIImage(named: "dagens-cell-circle")
+}
+
 class DagensTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
@@ -46,8 +55,28 @@ class DagensTableViewCell: UITableViewCell {
     func loadCell(dish: Dish) {
         titleLabel.text = dish.getTitle()
         restaurantLabel.text = dish.getRestaurant().getTitle()
-        //allergiesLabel.text = dish.getAllergiesString()
-        self.loadMap(dish.getRestaurant().getCoordinates())
+        
+        loadMap(dish.getRestaurant().getCoordinates())
+        
+        // HACK: Should be stored in array as instance variable
+        var imageViewOutlets = [UIImageView]()
+        imageViewOutlets.append(firstAllergyImageView)
+        imageViewOutlets.append(secondAllergyImageView)
+        imageViewOutlets.append(thirdAllergyImageView)
+        imageViewOutlets.append(plusAllergyImageView)
+        
+        // Avoids persistence of images on reload - unknown reason
+        for item in imageViewOutlets {
+            item.image = nil
+        }
+        
+        var outletIndex = 0
+        for allergy in dish.getAllergies() {
+            if let image = getImageForAllergy(allergy) {
+                imageViewOutlets[outletIndex].image = image
+                outletIndex += 1
+            }
+        }
         
         setColors()
     }
@@ -58,6 +87,23 @@ class DagensTableViewCell: UITableViewCell {
         restaurantLabel.textColor = color
         distanceLabel.textColor = color
         // circleImageView change image
+    }
+    
+    private func getImageForAllergy(allergy: String) -> UIImage? {
+        switch allergy {
+            case "egg":
+            return AllergyIcons.eggs
+            case "melk":
+            return AllergyIcons.milk
+            case "nøtter":
+            return AllergyIcons.nuts
+            case "soya":
+            return AllergyIcons.soy
+            case "hvete":
+            return AllergyIcons.wheat
+        default:
+            return allergy.containsString("se merking") ? AllergyIcons.unknown : nil
+        }
     }
     
 }

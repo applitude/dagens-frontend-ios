@@ -124,25 +124,25 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EeT-I0-fVd" userLabel="allergiesView">
                                                     <rect key="frame" x="15" y="72" width="80" height="15"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eggs" translatesAutoresizingMaskIntoConstraints="NO" id="l9V-mu-q3K" userLabel="firstAllergyImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l9V-mu-q3K" userLabel="firstAllergyImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="iuV-pM-2LQ"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nuts" translatesAutoresizingMaskIntoConstraints="NO" id="6mu-jV-VB3" userLabel="thirdAllergyImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6mu-jV-VB3" userLabel="thirdAllergyImageView">
                                                             <rect key="frame" x="44" y="0.0" width="15" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="rp6-Fk-WZw"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soy" translatesAutoresizingMaskIntoConstraints="NO" id="X7C-tT-sC5" userLabel="plusAllergyImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X7C-tT-sC5" userLabel="plusAllergyImageView">
                                                             <rect key="frame" x="66" y="0.0" width="15" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="jeN-q3-3YQ"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="milk" translatesAutoresizingMaskIntoConstraints="NO" id="QX2-8j-krn" userLabel="secondAllergyImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QX2-8j-krn" userLabel="secondAllergyImageView">
                                                             <rect key="frame" x="22" y="0.0" width="15" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="BWh-l4-Hl9"/>
@@ -271,9 +271,5 @@
     <resources>
         <image name="dagens-cell-circle" width="71" height="71"/>
         <image name="dots" width="33" height="33"/>
-        <image name="eggs" width="33" height="33"/>
-        <image name="milk" width="33" height="33"/>
-        <image name="nuts" width="33" height="33"/>
-        <image name="soy" width="33" height="33"/>
     </resources>
 </document>
