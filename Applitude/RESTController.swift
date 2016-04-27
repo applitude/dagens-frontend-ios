@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class RESTController: NSObject {
+class HTTPController: NSObject {
     
     private let endpoint: URLStringConvertible = "https://s3-eu-west-1.amazonaws.com/todays-dinner/sioapi.json"
     
@@ -21,7 +21,7 @@ class RESTController: NSObject {
             .responseString { response in
 
                 guard let dataFromString = response.result.value?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) else {
-                    let _ = response.result.error
+                    _ = response.result.error
                     
                     // TODO: Handle errors
                     
@@ -75,10 +75,15 @@ class RESTController: NSObject {
             // Sort day array by date key (formatted as String), current day first
             dayArray.sortInPlace { $0.0 < $1.0 }
             
+            // Equivalent of the dayArray.sortInPlace call
+            /* dayArray.sortInPlace({ (first, second) -> Bool in
+                return first.0 < second.0
+            }) */
+            
             for (_, date): (String, JSON) in dayArray {
                 
                 // Find price info
-                var price = "NA"
+                var price: String?
                 
                 for (_, dishOrPriceInfo): (String, JSON) in date {
                     
@@ -114,9 +119,13 @@ class RESTController: NSObject {
                     }*/
                     
                     // Uncomment for a rough test of allergies parsing
-                    //print("title: \(title), allergies-count: \(allergies.count)")
+                    // print("title: \(title), allergies-count: \(allergies.count)")
                     
-                    dishes.append(Dish(title: title, price: price, veggie: false, allergies: ["String"], restaurant: restaurant))
+                    // TODO: Determine if veggie
+                    
+                    var veggie = false
+                    
+                    dishes.append(Dish(title: title, price: price, veggie: veggie, allergies: allergies, restaurant: restaurant))
                     
                 }
                 
