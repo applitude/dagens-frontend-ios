@@ -1,6 +1,6 @@
 # dagens-frontend-ios
 
-*Dagens* (kodenavn) er hovedprosjektet på appkveldene til iOS-gruppa i Applitude våren 2016. Motivasjonen for prosjektet er at vi trengte et allsidig prosjekt som går innom mange konsepter medlemmene våre får bruk for i egne apputviklingsprosjekter, og som enkelt kan deles inn i oppgaver med forskjellig vanskelighetsgrad.
+*Dagens* (arbeidstittel) er hovedprosjektet på appkveldene til iOS-gruppa i Applitude våren 2016. Motivasjonen for prosjektet er at vi trengte et allsidig prosjekt som går innom mange konsepter medlemmene våre får bruk for i egne apputviklingsprosjekter, og som enkelt kan deles inn i oppgaver med forskjellig vanskelighetsgrad.
 
 Problemet appen løser er å få rask og oversiktlig info om dagens middag på SiO-restauranter. Matrettene vises i en liste sortert på hvor langt brukeren er fra restaurantene (geografisk). Dermed skal man kunne åpne appen og med en gang se hvilke retter som serveres i nærheten.
 
