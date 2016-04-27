@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class DagensTableViewCell: UITableViewCell {
     
@@ -19,6 +20,8 @@ class DagensTableViewCell: UITableViewCell {
     @IBOutlet var secondAllergyImageView: UIImageView!
     @IBOutlet var thirdAllergyImageView: UIImageView!
     @IBOutlet var plusAllergyImageView: UIImageView!
+    
+    @IBOutlet weak var mapView: GMSMapView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
