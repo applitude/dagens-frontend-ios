@@ -97,10 +97,24 @@ class RESTController: NSObject {
                     }
                     
                     let title = dishOrPriceInfo["name"].stringValue
-                    //let lactoseFree = dish["noLactose"].boolValue
-                    //let glutenFree = dish["noGluten"].boolValue
                     
-                    // TODO: Get and format more values
+                    var allergies = [String]()
+                    
+                    // TODO: Find allergies (extract from dish's title)
+                    
+                    // Uncomment if the noLactose and/or noGluten tags are put to use
+                    /*if /* title is not marked with \"Allergener: se merking\" */ {
+                        if !dishOrPriceInfo["noLactose"].boolValue {
+                            allergies.append("laktose")
+                        }
+                        
+                        if !dishOrPriceInfo["noGluten"].boolValue {
+                            allergies.append("gluten")
+                        }
+                    }*/
+                    
+                    // Uncomment for a rough test of allergies parsing
+                    //print("title: \(title), allergies-count: \(allergies.count)")
                     
                     dishes.append(Dish(title: title, price: price, veggie: false, allergies: ["String"], restaurant: restaurant))
                     
