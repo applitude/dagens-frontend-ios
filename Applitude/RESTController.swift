@@ -101,11 +101,22 @@ class HTTPController: NSObject {
                         continue
                     }
                     
-                    let title = dishOrPriceInfo["name"].stringValue
+                    var title = dishOrPriceInfo["name"].stringValue
+                    let veggie = dishOrPriceInfo["type"].stringValue == "Vegetar"
                     
+                    // Extract allergies from dish's title
+                    var suffix = ""
                     var allergies = [String]()
                     
-                    // TODO: Find allergies (extract from dish's title)
+                    if let rangeOfKeyword = title.rangeOfString("Allergener:", options: [NSStringCompareOptions.BackwardsSearch, NSStringCompareOptions.CaseInsensitiveSearch]) {
+                        suffix = String(title.characters.suffixFrom(rangeOfKeyword.endIndex))
+                        allergies = suffix.componentsSeparatedByString(", ")
+                        title = String(title.characters.prefixUpTo(rangeOfKeyword.startIndex))
+                        
+                        if allergies[0].characters.first == " " {
+                            allergies[0] = String(allergies[0].characters.dropFirst())
+                        }
+                    }
                     
                     // Uncomment if the noLactose and/or noGluten tags are put to use
                     /*if /* title is not marked with \"Allergener: se merking\" */ {
@@ -120,10 +131,6 @@ class HTTPController: NSObject {
                     
                     // Uncomment for a rough test of allergies parsing
                     // print("title: \(title), allergies-count: \(allergies.count)")
-                    
-                    // TODO: Determine if veggie
-                    
-                    var veggie = false
                     
                     dishes.append(Dish(title: title, price: price, veggie: veggie, allergies: allergies, restaurant: restaurant))
                     
