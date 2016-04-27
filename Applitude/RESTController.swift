@@ -13,8 +13,13 @@ import SwiftyJSON
 class HTTPController: NSObject {
     
     private let endpoint: URLStringConvertible = "https://s3-eu-west-1.amazonaws.com/todays-dinner/sioapi.json"
+  
     
     func requestDishes() {
+        // Change the cache policy so that no existing cache data should be used to satisfy a URL load request.
+        let requestCachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
+      
+        Alamofire.Manager.sharedInstance.session.configuration.requestCachePolicy = requestCachePolicy
         
         // Sends the actual request, with a closure that gets executed when the data is received
         Alamofire.request(.GET, endpoint)
