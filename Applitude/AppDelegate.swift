@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let googleMapsApiKey = "AIzaSyAcCCH8b9DkVVtm8oEkDVqhMl8gRYMf0X4"
+        GMSServices.provideAPIKey(googleMapsApiKey)
         
         // Start fetching data from S3
         DataManager.sharedInstance.fetchTodaysDinner()
@@ -52,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    
 
 }
 
