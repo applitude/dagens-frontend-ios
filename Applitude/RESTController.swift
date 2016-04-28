@@ -80,12 +80,19 @@ class HTTPController: NSObject {
             // Sort day array by date key (formatted as String), current day first
             dayArray.sortInPlace { $0.0 < $1.0 }
             
-            // Equivalent of the dayArray.sortInPlace call
+            // Equivalent of the dayArray.sortInPlace call, included for explanation
             /* dayArray.sortInPlace({ (first, second) -> Bool in
                 return first.0 < second.0
             }) */
             
-            for (_, date): (String, JSON) in dayArray {
+            for (dateString, date): (String, JSON) in dayArray {
+                
+                // Temporary fix for app displaying yesterday's dishes before 13/14 o'clock
+                let day = NSCalendar.currentCalendar().component(.Day, fromDate: NSDate())
+                
+                guard dateString.componentsSeparatedByString("-")[2].containsString(String(day)) else {
+                    continue
+                }
                 
                 // Find price info
                 var price: String?
