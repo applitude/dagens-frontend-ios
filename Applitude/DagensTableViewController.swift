@@ -14,10 +14,7 @@ import UIKit
 
 class DagensTableViewController: UITableViewController {
     
-    // Keeps track of which cell, if any, is currently expanded
-    private var expandedIndexPath: NSIndexPath?
-    
-    // MARK: View controller life cycle
+    // MARK: - View controller life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,44 +31,30 @@ class DagensTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: Table view data source
+    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return DataManager.sharedInstance.getNumberOfRestaurants()
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataManager.sharedInstance.getNumberOfDishes()
+        if let dishes = DataManager.sharedInstance.getRestaurantAtIndex(section).getDishes() {
+            return dishes.count + 1
+        }
+        return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("dagensCell", forIndexPath: indexPath) as! DagensTableViewCell
-
-        // Configure the cell...
-        cell.loadCell(DataManager.sharedInstance.getDishAtIndex(indexPath.row))
-
-        return cell
-    }
-    
-    // MARK: Table view delegate (manages cell expansion/contraction)
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        // if: User selected expanded cell
-        if expandedIndexPath == indexPath {
-            expandedIndexPath = nil
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! DagensRestaurantTableViewCell
+            cell.loadCell(DataManager.sharedInstance.getRestaurantAtIndex(indexPath.section))
+            return cell
         } else {
-            expandedIndexPath = indexPath
+            let cell = tableView.dequeueReusableCellWithIdentifier("dishCell", forIndexPath: indexPath) as! DagensDishTableViewCell
+            let dish = DataManager.sharedInstance.getRestaurantAtIndex(indexPath.section).getDishes()![indexPath.row - 1]
+            cell.loadCell(dish)
+            return cell
         }
-        
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let contractedHeight: CGFloat = 115
-        let expandedHeight: CGFloat = 300
-
-        return indexPath == expandedIndexPath ? expandedHeight : contractedHeight
     }
 
     /*

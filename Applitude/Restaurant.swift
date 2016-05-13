@@ -16,6 +16,7 @@ class Restaurant: NSObject {
     private let coordinates: (lat: Double, long: Double)
     private let opening: [(dayRange: String, hours: String)]
     private let extraOpening: String?
+    private var dishes: [Dish]? = nil
     
     init(title: String, address: String, campus: String, coordinates: (lat: Double, long: Double), opening: [(dayRange: String, hours: String)], extraOpening: String?) {
         self.title = title
@@ -26,6 +27,10 @@ class Restaurant: NSObject {
         self.extraOpening = extraOpening
         
         super.init()
+    }
+    
+    func setDishes(dishes: [Dish]) {
+        self.dishes = dishes
     }
     
     func getTitle() -> String {
@@ -50,6 +55,10 @@ class Restaurant: NSObject {
     
     func getExtraOpening() -> String? {
         return extraOpening
+    }
+    
+    func getDishes() -> [Dish]? {
+        return dishes
     }
 
 }

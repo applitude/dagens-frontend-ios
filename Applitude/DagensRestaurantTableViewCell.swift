@@ -18,26 +18,18 @@ struct AllergyIcons {
     static var unknown = UIImage(named: "dagens-cell-circle")
 }
 
-class DagensTableViewCell: UITableViewCell {
+class DagensRestaurantTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var restaurantLabel: UILabel!
+    @IBOutlet var openingLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
-    @IBOutlet var circleImageView: UIImageView!
     
-    @IBOutlet var firstAllergyImageView: UIImageView!
-    @IBOutlet var secondAllergyImageView: UIImageView!
-    @IBOutlet var thirdAllergyImageView: UIImageView!
-    @IBOutlet var plusAllergyImageView: UIImageView!
-    
-    @IBOutlet weak var mapView: GMSMapView!
-    
-    func loadMap(coordinates: (lat: Double, long: Double)) {
+    /*func loadMap(coordinates: (lat: Double, long: Double)) {
         mapView.myLocationEnabled = true
         mapView.animateToLocation(CLLocationCoordinate2DMake(coordinates.lat, coordinates.long))
         mapView.animateToZoom(15)
         mapView.myLocation
-    }
+    }*/
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,31 +44,8 @@ class DagensTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func loadCell(dish: Dish) {
-        titleLabel.text = dish.getTitle()
-        restaurantLabel.text = dish.getRestaurant().getTitle()
-        
-        loadMap(dish.getRestaurant().getCoordinates())
-        
-        // HACK: Should be stored in array as instance variable
-        var imageViewOutlets = [UIImageView]()
-        imageViewOutlets.append(firstAllergyImageView)
-        imageViewOutlets.append(secondAllergyImageView)
-        imageViewOutlets.append(thirdAllergyImageView)
-        imageViewOutlets.append(plusAllergyImageView)
-        
-        // Avoids persistence of images on reload - unknown reason
-        for item in imageViewOutlets {
-            item.image = nil
-        }
-        
-        var outletIndex = 0
-        for allergy in dish.getAllergies() {
-            if let image = getImageForAllergy(allergy) {
-                imageViewOutlets[outletIndex].image = image
-                outletIndex += 1
-            }
-        }
+    func loadCell(restaurant: Restaurant) {
+        titleLabel.text = restaurant.getTitle()
         
         setColors()
     }
@@ -84,7 +53,7 @@ class DagensTableViewCell: UITableViewCell {
     func setColors() {
         let color = Settings.sharedInstance.themeColor
         
-        restaurantLabel.textColor = color
+        titleLabel.textColor = color
         distanceLabel.textColor = color
         // circleImageView change image
     }

@@ -18,7 +18,7 @@ class DataManager: NSObject {
     
     private var httpController = HTTPController()
     
-    var dishes = [Dish]() {
+    var restaurants = [Restaurant]() {
         didSet {
             NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
         }
@@ -26,12 +26,12 @@ class DataManager: NSObject {
     
     // MARK: Getters
     
-    func getNumberOfDishes() -> Int {
-        return dishes.count
+    func getNumberOfRestaurants() -> Int {
+        return restaurants.count
     }
     
-    func getDishAtIndex(index: Int) -> Dish {
-        return dishes[index]
+    func getRestaurantAtIndex(index: Int) -> Restaurant {
+        return restaurants[index]
     }
 
     // MARK: RESTController

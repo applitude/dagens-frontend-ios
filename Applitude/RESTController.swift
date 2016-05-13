@@ -42,7 +42,7 @@ class HTTPController: NSObject {
 
     private func parseJSON(json: JSON) {
         
-        var dishes = [Dish]()
+        var restaurants = [Restaurant]()
         
         for (_, restaurantDict): (String, JSON) in json["data"] {
             
@@ -84,6 +84,8 @@ class HTTPController: NSObject {
             /* dayArray.sortInPlace({ (first, second) -> Bool in
                 return first.0 < second.0
             }) */
+            
+            var dishes = [Dish]()
             
             for (dateString, date): (String, JSON) in dayArray {
                 
@@ -144,7 +146,7 @@ class HTTPController: NSObject {
                     // Uncomment for a rough test of allergies parsing
                     // print("title: \(title), allergies-count: \(allergies.count)")
                     
-                    dishes.append(Dish(title: title, price: price, veggie: veggie, allergies: allergies, restaurant: restaurant))
+                    dishes.append(Dish(title: title, price: price, veggie: veggie, allergies: allergies))
                     
                 }
                 
@@ -153,9 +155,12 @@ class HTTPController: NSObject {
                 
             }
             
+            restaurant.setDishes(dishes)
+            restaurants.append(restaurant)
+            
         }
         
-        DataManager.sharedInstance.dishes = dishes
+        DataManager.sharedInstance.restaurants = restaurants
         
     }
 
