@@ -80,71 +80,71 @@
 		4F7C75381C6E3AF4001EA5C8 /* Applitude */ = {
 			isa = PBXGroup;
 			children = (
-				9F937B721C6E5FA400AB947D /* Models */,
-				9F937B6F1C6E5F3F00AB947D /* ViewControllers */,
-				9F937B731C6E5FC600AB947D /* Views */,
-				9F937B6E1C6E5F3500AB947D /* Delegates */,
-				9F937B701C6E5F4C00AB947D /* Storyboards */,
-				9F937B711C6E5F9B00AB947D /* Setup */,
+				9F1D276E1D6671C200CCF6CD /* Dagens */,
+				9F1D276F1D6671E300CCF6CD /* Settings */,
+				9F937B721C6E5FA400AB947D /* Model */,
+				4F7C75391C6E3AF4001EA5C8 /* AppDelegate.swift */,
+				4F7C753D1C6E3AF4001EA5C8 /* Main.storyboard */,
+				4F7C75421C6E3AF4001EA5C8 /* LaunchScreen.storyboard */,
 				4F7C75401C6E3AF4001EA5C8 /* Assets.xcassets */,
+				4F7C75451C6E3AF4001EA5C8 /* Info.plist */,
 			);
 			path = Applitude;
 			sourceTree = "<group>";
 		};
-		9F937B6E1C6E5F3500AB947D /* Delegates */ = {
+		9F1D276E1D6671C200CCF6CD /* Dagens */ = {
 			isa = PBXGroup;
 			children = (
-				4F7C75391C6E3AF4001EA5C8 /* AppDelegate.swift */,
+				9F1D27701D66721F00CCF6CD /* Views */,
+				4F7C754B1C6E3DF3001EA5C8 /* DagensTableViewController.swift */,
 			);
-			name = Delegates;
+			name = Dagens;
 			sourceTree = "<group>";
 		};
-		9F937B6F1C6E5F3F00AB947D /* ViewControllers */ = {
+		9F1D276F1D6671E300CCF6CD /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				4F7C754B1C6E3DF3001EA5C8 /* DagensTableViewController.swift */,
+				9F1D27711D66723000CCF6CD /* Views */,
 				9F937B7C1C6E750A00AB947D /* SettingsTableViewController.swift */,
 			);
-			name = ViewControllers;
+			name = Settings;
 			sourceTree = "<group>";
 		};
-		9F937B701C6E5F4C00AB947D /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				4F7C753D1C6E3AF4001EA5C8 /* Main.storyboard */,
-				4F7C75421C6E3AF4001EA5C8 /* LaunchScreen.storyboard */,
-			);
-			name = Storyboards;
-			sourceTree = "<group>";
-		};
-		9F937B711C6E5F9B00AB947D /* Setup */ = {
-			isa = PBXGroup;
-			children = (
-				4F7C75451C6E3AF4001EA5C8 /* Info.plist */,
-			);
-			name = Setup;
-			sourceTree = "<group>";
-		};
-		9F937B721C6E5FA400AB947D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				6EF674F51C6E545B00B8C3F2 /* Dish.swift */,
-				9FBA773A1C777D0200AB6271 /* Restaurant.swift */,
-				9F937B761C6E6A5600AB947D /* DataManager.swift */,
-				9F7AAAC81C99C39D00320B31 /* RESTController.swift */,
-				9F937B741C6E67ED00AB947D /* Settings.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		9F937B731C6E5FC600AB947D /* Views */ = {
+		9F1D27701D66721F00CCF6CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				4F7C754D1C6E3FF9001EA5C8 /* DagensRestaurantTableViewCell.swift */,
 				9F8DD5CC1CE60496002652A3 /* DagensDishTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9F1D27711D66723000CCF6CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				4FD9B5301C778F8200AA204D /* SettingsTableViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		9F1D27721D6672B700CCF6CD /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				6EF674F51C6E545B00B8C3F2 /* Dish.swift */,
+				9FBA773A1C777D0200AB6271 /* Restaurant.swift */,
+			);
+			name = DTOs;
+			sourceTree = "<group>";
+		};
+		9F937B721C6E5FA400AB947D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9F1D27721D6672B700CCF6CD /* DTOs */,
+				9F937B761C6E6A5600AB947D /* DataManager.swift */,
+				9F7AAAC81C99C39D00320B31 /* RESTController.swift */,
+				9F937B741C6E67ED00AB947D /* Settings.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		B0E22D561F21D435E08999BB /* Frameworks */ = {
