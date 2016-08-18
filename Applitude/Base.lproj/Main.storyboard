@@ -147,7 +147,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allergener: melk, nøtter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwv-Io-yMb" userLabel="allergiesLabel">
-                                            <rect key="frame" x="20" y="41.5" width="133" height="15"/>
+                                            <rect key="frame" x="20" y="41.5" width="555" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -156,6 +156,7 @@
                                     <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="xwv-Io-yMb" firstAttribute="top" secondItem="Dfg-NG-OwB" secondAttribute="bottom" constant="2" id="1xN-Bf-ooV"/>
+                                        <constraint firstItem="xwv-Io-yMb" firstAttribute="trailing" secondItem="Dfg-NG-OwB" secondAttribute="trailing" id="BAq-SV-7Yu"/>
                                         <constraint firstAttribute="trailing" secondItem="Dfg-NG-OwB" secondAttribute="trailing" constant="25" id="IfP-12-iWs"/>
                                         <constraint firstItem="Dfg-NG-OwB" firstAttribute="top" secondItem="ROh-g8-IOO" secondAttribute="topMargin" constant="10" id="P1e-QQ-KrT"/>
                                         <constraint firstItem="xwv-Io-yMb" firstAttribute="leading" secondItem="Dfg-NG-OwB" secondAttribute="leading" id="gyB-ZG-ewg"/>

@@ -1,13 +1,3 @@
-//
-//  ServerManager.swift
-//  Applitude
-//
-//  Created by Gaute Solheim on 12.02.2016.
-//  Copyright © 2016 Applitude. All rights reserved.
-//
-//  Handles all communication with dagens-backend (effectively Amazon S3), and saves the received data locally.
-//
-
 import Foundation
 
 class DataManager: NSObject {

@@ -25,8 +25,8 @@ class DagensDishTableViewCell: UITableViewCell {
     }
     
     func loadCell(dish: Dish) {
-        titleLabel.text = dish.getTitle()
-        allergiesLabel.text = dish.getAllergiesString()
+        titleLabel.text = dish.title
+        allergiesLabel.text = dish.allergiesString
     }
 
 }

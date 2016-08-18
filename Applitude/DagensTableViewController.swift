@@ -1,15 +1,3 @@
-//
-//  DagensTableViewController.swift
-//  Applitude
-//
-//  Created by Anders Orset on 12.02.2016.
-//  Copyright © 2016 Applitude. All rights reserved.
-//
-//  The app's main view.
-//
-//  Detailed explanation of the cell expansion/contraction: stackoverflow.com/a/29851944.
-//
-
 import UIKit
 
 class DagensTableViewController: UITableViewController {
@@ -38,7 +26,7 @@ class DagensTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let dishes = DataManager.sharedInstance.getRestaurantAtIndex(section).getDishes() {
+        if let dishes = DataManager.sharedInstance.getRestaurantAtIndex(section).dishes {
             return dishes.count + 1
         }
         return 1
@@ -51,7 +39,7 @@ class DagensTableViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("dishCell", forIndexPath: indexPath) as! DagensDishTableViewCell
-            let dish = DataManager.sharedInstance.getRestaurantAtIndex(indexPath.section).getDishes()![indexPath.row - 1]
+            let dish = DataManager.sharedInstance.getRestaurantAtIndex(indexPath.section).dishes![indexPath.row - 1]
             cell.loadCell(dish)
             return cell
         }

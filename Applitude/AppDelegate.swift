@@ -16,20 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
         let googleMapsApiKey = "AIzaSyAcCCH8b9DkVVtm8oEkDVqhMl8gRYMf0X4"
         GMSServices.provideAPIKey(googleMapsApiKey)
         
         // Start fetching data from S3
         DataManager.sharedInstance.fetchTodaysDinner()
-        
-        // Hide shadow line on bottom of navigation bar
-        let navigationController = self.window!.rootViewController! as! UINavigationController
-        navigationController.navigationBar.barTintColor = Settings.sharedInstance.themeColor
-        
-        if let shadowLine = navigationController.navigationBar.subviews[0].subviews[0] as? UIImageView {
-            shadowLine.hidden = true
+
+        if let navigationController = window?.rootViewController as? UINavigationController {
+            navigationController.navigationBar.barTintColor = Settings.sharedInstance.themeColor
+
+            if let shadowLine = navigationController.navigationBar.subviews[0].subviews[0] as? UIImageView {
+                shadowLine.hidden = true
+            }
         }
-        
+
         return true
     }
 
