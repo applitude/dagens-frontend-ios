@@ -27,14 +27,6 @@ class DagensDishTableViewCell: UITableViewCell {
     func loadCell(dish: Dish) {
         titleLabel.text = dish.getTitle()
         allergiesLabel.text = dish.getAllergiesString()
-        
-        print("--")
-        print(self.frame.size.width)
-        print(titleLabel.frame.size.width)
-        
-        titleLabel.numberOfLines = titleLabel.frame.width > self.frame.size.width - 200 ? 2 : 1
-        titleLabel.preferredMaxLayoutWidth = self.frame.width - 100
-        titleLabel.frame.size.height = 100
     }
 
 }
