@@ -31,9 +31,10 @@ class SettingsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell", forIndexPath: indexPath) as! SettingsTableViewCell
 
         let setting = Settings.sharedInstance.settings[indexPath.row]
-        let isOn = NSUserDefaults.standardUserDefaults().boolForKey(setting.rawValue)
+        let isOn = NSUserDefaults.standardUserDefaults().boolForKey(setting.key.rawValue)
+        let title = setting.title
 
-        cell.loadCellForRow(indexPath.row, isOn: isOn, setting: setting)
+        cell.loadCellForRow(indexPath.row, isOn: isOn, title: title)
 
         return cell
     }

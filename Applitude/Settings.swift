@@ -14,10 +14,10 @@ class Settings: NSObject {
     var themeColor: UIColor
     
     // Array for loading table view cells - may be reordered or split.
-    let settings: [SettingsKey] = [
-        .BlackTheme,
-        .Veggie,
-        .Gluten
+    let settings: [(key: SettingsKey, title: String)] = [
+        (.BlackTheme, "Black Theme Color"),
+        (.Veggie, "Veggie"),
+        (.Gluten, "Gluten")
     ]
     
     private let redColor = UIColor(red: 251/255.0, green: 84/255.0, blue: 110/255.0, alpha: 1)
@@ -30,10 +30,10 @@ class Settings: NSObject {
     func changeValueForSettingAtIndex(index: Int, value: Bool) {
         let setting = settings[index]
 
-        NSUserDefaults.standardUserDefaults().setBool(value, forKey: setting.rawValue)
+        NSUserDefaults.standardUserDefaults().setBool(value, forKey: setting.key.rawValue)
         
         // Handles immediate changes
-        switch setting {
+        switch setting.key {
         case .BlackTheme:
             themeColor = value ? blackColor : redColor
             switchThemeColor(value)
