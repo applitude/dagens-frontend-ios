@@ -3,16 +3,11 @@ import UIKit
 class SettingsTableViewController: UITableViewController {
     
     @IBAction func cellSwitchValueChanged(sender: UISwitch) {
-        
         Settings.sharedInstance.changeValueForSettingAtIndex(sender.tag, value: sender.on)
-        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
     }
     
     // MARK: Table view data source

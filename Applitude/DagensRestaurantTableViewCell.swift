@@ -15,28 +15,9 @@ class DagensRestaurantTableViewCell: UITableViewCell {
     @IBOutlet var openingLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     
-//    func loadMap(coordinates: (lat: Double, long: Double)) {
-//        mapView.myLocationEnabled = true
-//        mapView.animateToLocation(CLLocationCoordinate2DMake(coordinates.lat, coordinates.long))
-//        mapView.animateToZoom(15)
-//        mapView.myLocation
-//    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        // Initialization code
-        self.setColors()
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    func loadCell(restaurant: Restaurant) {
-        titleLabel.text = restaurant.title
+    func loadCell(title: String, opening: String, distance: String) {
+        titleLabel.text = title
+        distanceLabel.text = distance
         
         setColors()
     }

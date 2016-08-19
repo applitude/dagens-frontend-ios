@@ -1,4 +1,5 @@
 import Foundation
+import CoreLocation
 
 class DataManager: NSObject {
     
@@ -29,5 +30,20 @@ class DataManager: NSObject {
     func fetchTodaysDinner() {
         httpController.requestDishes()
     }
-    
+
+    // MARK: Location
+
+    func sortRestaurantsByDistance() {
+        let userLocation = CLLocation(latitude: 59.94285718496329, longitude: 10.761729549961919)
+
+        restaurants.forEach { restaurant in
+            let restaurantLocation = CLLocation(latitude: restaurant.coordinates.lat, longitude: restaurant.coordinates.long)
+            let distanceFromUser = userLocation.distanceFromLocation(restaurantLocation)
+
+            restaurant.distanceFromUser = distanceFromUser
+        }
+
+        restaurants.sortInPlace { $0.distanceFromUser <= $1.distanceFromUser }
+    }
+
 }

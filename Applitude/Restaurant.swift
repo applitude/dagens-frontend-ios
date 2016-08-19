@@ -9,6 +9,8 @@ class Restaurant: NSObject {
     let opening: [(dayRange: String, hours: String)]
     let extraOpening: String?
     var dishes: [Dish]?
+
+    var distanceFromUser: Double?
     
     init(title: String, address: String, campus: String, coordinates: (lat: Double, long: Double), opening: [(dayRange: String, hours: String)], extraOpening: String?) {
         self.title = title

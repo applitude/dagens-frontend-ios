@@ -76,9 +76,10 @@ class HTTPController: NSObject {
             restaurants.append(restaurant)
             
         }
-        
+
         DataManager.sharedInstance.restaurants = restaurants
-        
+        DataManager.sharedInstance.sortRestaurantsByDistance()
+
     }
 
     private func parseRestaurantJSON(restaurantJSON: JSON) -> Restaurant {
