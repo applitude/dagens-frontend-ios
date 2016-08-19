@@ -24,8 +24,7 @@ class HTTPController: NSObject {
                     
                     return
                 }
-                
-//                print(JSON(data: dataFromString))
+
                 self.parseJSON(JSON(data: dataFromString))
                 
         }
@@ -78,7 +77,6 @@ class HTTPController: NSObject {
         }
 
         DataManager.sharedInstance.restaurants = restaurants
-        DataManager.sharedInstance.sortRestaurantsByDistance()
 
     }
 

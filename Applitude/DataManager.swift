@@ -7,23 +7,21 @@ class DataManager: NSObject {
     static let sharedInstance = DataManager()
     private override init() {}
     
-    private var httpController = HTTPController()
+    private let httpController = HTTPController()
+    private let locationManager = CLLocationManager()
     
-    var restaurants = [Restaurant]() {
-        didSet {
+    var restaurants: [Restaurant] {
+        get {
+            return storedRestaurants
+        }
+        set(newValue) {
+            storedRestaurants = newValue
+            filterStoredRestaurants()
             NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
         }
     }
-    
-    // MARK: Getters
-    
-    func getNumberOfRestaurants() -> Int {
-        return restaurants.count
-    }
-    
-    func getRestaurantAtIndex(index: Int) -> Restaurant {
-        return restaurants[index]
-    }
+
+    private var storedRestaurants = [Restaurant]()
 
     // MARK: RESTController
     
@@ -31,19 +29,46 @@ class DataManager: NSObject {
         httpController.requestDishes()
     }
 
-    // MARK: Location
+    // MARK: Location services
 
-    func sortRestaurantsByDistance() {
-        let userLocation = CLLocation(latitude: 59.94285718496329, longitude: 10.761729549961919)
+    func setupLocationServices() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
 
-        restaurants.forEach { restaurant in
+    private func filterStoredRestaurants() {
+        storedRestaurants = storedRestaurants.filter { $0.dishes?.count > 0 }
+    }
+
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension DataManager: CLLocationManagerDelegate {
+
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("location-manager-did-update-locations")
+
+        guard locations.count > 0 else {
+            return
+        }
+
+        sortRestaurantsForUserLocation(locations[0])
+    }
+
+    private func sortRestaurantsForUserLocation(userLocation: CLLocation) {
+
+        storedRestaurants.forEach { restaurant in
             let restaurantLocation = CLLocation(latitude: restaurant.coordinates.lat, longitude: restaurant.coordinates.long)
             let distanceFromUser = userLocation.distanceFromLocation(restaurantLocation)
 
             restaurant.distanceFromUser = distanceFromUser
         }
 
-        restaurants.sortInPlace { $0.distanceFromUser <= $1.distanceFromUser }
+        restaurants = storedRestaurants.sort { $0.distanceFromUser <= $1.distanceFromUser }
     }
 
 }
+

@@ -12,6 +12,8 @@ class DagensTableViewController: UITableViewController {
         
         // Register to receive notifications that we'll post when the dishes collection is updated
         NSNotificationCenter.defaultCenter().addObserver(tableView, selector: #selector(UITableView.reloadData), name: "dishesUpdated", object: nil)
+
+        DataManager.sharedInstance.setupLocationServices()
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,11 +24,11 @@ class DagensTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return DataManager.sharedInstance.getNumberOfRestaurants()
+        return DataManager.sharedInstance.restaurants.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let dishes = DataManager.sharedInstance.getRestaurantAtIndex(section).dishes {
+        if let dishes = DataManager.sharedInstance.restaurants[section].dishes {
             return dishes.count + 1
         }
         return 1
@@ -36,7 +38,7 @@ class DagensTableViewController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! DagensRestaurantTableViewCell
 
-            let restaurant = DataManager.sharedInstance.getRestaurantAtIndex(indexPath.section)
+            let restaurant = DataManager.sharedInstance.restaurants[indexPath.section]
 
             let title = restaurant.title
             let opening = "09.00 - 17.00" // TODO
@@ -49,7 +51,7 @@ class DagensTableViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("dishCell", forIndexPath: indexPath) as! DagensDishTableViewCell
-            let dish = DataManager.sharedInstance.getRestaurantAtIndex(indexPath.section).dishes![indexPath.row - 1]
+            let dish = DataManager.sharedInstance.restaurants[indexPath.section].dishes![indexPath.row - 1]
             cell.loadCell(dish)
             return cell
         }
