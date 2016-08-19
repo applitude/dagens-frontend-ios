@@ -15,18 +15,25 @@ class DataManager: NSObject {
             return storedRestaurants
         }
         set(newValue) {
-            guard userLocation != nil || CLLocationManager.authorizationStatus() == .Denied else {
+            storedRestaurants = newValue.filter { $0.dishes?.count > 0 }
+
+            guard CLLocationManager.authorizationStatus() != .Denied else {
+                NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
+                print("dishes-updated-by-status-denied")
                 return
             }
 
-            storedRestaurants = newValue.filter { $0.dishes?.count > 0 }
-            sortRestaurantsForUserLocation()
-            NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
+            sortRestaurantsByUserLocation()
+        }
+    }
+
+    private var userLocation: CLLocation? {
+        didSet {
+            sortRestaurantsByUserLocation()
         }
     }
 
     private var storedRestaurants = [Restaurant]()
-    private var userLocation: CLLocation?
 
     // MARK: RESTController
     
@@ -36,7 +43,11 @@ class DataManager: NSObject {
 
     // MARK: Location services
 
-    func setupLocationServices() {
+    func setupLocationUpdates() {
+        guard CLLocationManager.authorizationStatus() != .Denied else {
+            return
+        }
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 10
@@ -44,8 +55,14 @@ class DataManager: NSObject {
         locationManager.startUpdatingLocation()
     }
 
-    private func sortRestaurantsForUserLocation() {
-        guard let userLocation = userLocation else {
+    // Required for sortRestaurantsByUserLocation() to return unless both variables have an updated value
+    func prepareForResumingLocationUpdates() {
+        userLocation = nil
+        storedRestaurants = [Restaurant]()
+    }
+
+    private func sortRestaurantsByUserLocation() {
+        guard let userLocation = userLocation where !storedRestaurants.isEmpty else {
             return
         }
 
@@ -57,6 +74,9 @@ class DataManager: NSObject {
         }
 
         storedRestaurants.sortInPlace { $0.distanceFromUser < $1.distanceFromUser }
+
+        NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
+        print("dishes-updated-by-user-location")
     }
 
 }
@@ -69,6 +89,11 @@ extension DataManager: CLLocationManagerDelegate {
         print("location-manager-did-update-locations")
 
         userLocation = locations.first
+    }
+
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("location-manager-did-fail-with-error")
+        print(error)
     }
 
 }

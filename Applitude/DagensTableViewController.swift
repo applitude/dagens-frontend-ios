@@ -12,8 +12,6 @@ class DagensTableViewController: UITableViewController {
         
         // Register to receive notifications that we'll post when the dishes collection is updated
         NSNotificationCenter.defaultCenter().addObserver(tableView, selector: #selector(UITableView.reloadData), name: "dishesUpdated", object: nil)
-
-        DataManager.sharedInstance.setupLocationServices()
     }
 
     override func didReceiveMemoryWarning() {
