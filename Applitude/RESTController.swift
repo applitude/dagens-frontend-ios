@@ -48,42 +48,42 @@ class HTTPController: NSObject {
             
             var dishes = [Dish]()
             
-            for (dateString, date): (String, JSON) in dayArray {
-                
-                // Temporary fix for app displaying yesterday's dishes before 13/14 o'clock
-                let day = NSCalendar.currentCalendar().component(.Day, fromDate: NSDate())
-                
-                guard dateString.componentsSeparatedByString("-")[2].containsString(String(day)) else {
+            for (dateString, dateJSON): (String, JSON) in dayArray {
+
+                guard let date = parseDateString(dateString) else {
+                    // TODO: Report error or return nil
+                    return
+                }
+
+                // HACK: Only parses current day
+                guard NSCalendar.currentCalendar().isDateInToday(date) else {
                     continue
                 }
-                
+
                 // Find price info
                 var price: String?
-                
-                for (_, dishOrPriceInfo): (String, JSON) in date {
-                    
-                    if dishOrPriceInfo["type"].stringValue == "Pris" {
-                        price = dishOrPriceInfo["name"].stringValue
+
+                for (_, dishOrPriceJSON): (String, JSON) in dateJSON {
+
+                    if dishOrPriceJSON["type"].stringValue == "Pris" {
+                        price = dishOrPriceJSON["name"].stringValue
                         break
                     }
-                    
+
                 }
-                
+
                 // Add dishes
-                for (_, dishOrPriceInfo): (String, JSON) in date {
+                for (_, dishOrPriceJSON): (String, JSON) in dateJSON {
                     
-                    guard dishOrPriceInfo["type"].stringValue != "Pris" else {
+                    guard dishOrPriceJSON["type"].stringValue != "Pris" else {
                         continue
                     }
                     
-                    let dish = parseDishJSON(dishOrPriceInfo, price: price)
+                    let dish = parseDishJSON(dishOrPriceJSON, price: price)
                     
                     dishes.append(dish)
                     
                 }
-                
-                // HACK: Stop after parsing first day (current day)
-                break
                 
             }
             
@@ -126,6 +126,17 @@ class HTTPController: NSObject {
         return restaurant
     }
 
+    private func parseDateString(dateString: String) -> NSDate? {
+
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = NSTimeZone(abbreviation: "CET")
+
+        let date = formatter.dateFromString(dateString)
+
+        return date
+    }
+
     private func parseDishJSON(dishJSON: JSON, price: String?) -> Dish {
 
         var title = dishJSON["name"].stringValue
@@ -146,18 +157,18 @@ class HTTPController: NSObject {
         }
 
         // Uncomment if the noLactose and/or noGluten tags are put to use
-        /*if /* title is not marked with \"Allergener: se merking\" */ {
-         if !dishOrPriceInfo["noLactose"].boolValue {
-         allergies.append("laktose")
-         }
-
-         if !dishOrPriceInfo["noGluten"].boolValue {
-         allergies.append("gluten")
-         }
-         }*/
+//        if /* title is not marked with \"Allergener: se merking\" */ {
+//            if !dishOrPriceInfo["noLactose"].boolValue {
+//                allergies.append("laktose")
+//            }
+//
+//            if !dishOrPriceInfo["noGluten"].boolValue {
+//                allergies.append("gluten")
+//            }
+//        }
 
         // Uncomment for a rough test of allergies parsing
-        // print("title: \(title), allergies-count: \(allergies.count)")
+//        print("title: \(title), allergies-count: \(allergies.count)")
 
         let dish = Dish(title: title, price: price, veggie: veggie, allergies: allergies)
 
