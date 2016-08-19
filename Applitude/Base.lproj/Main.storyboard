@@ -16,15 +16,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="3hA-o2-IK5" customClass="SettingsTableViewCell" customModule="Applitude" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="settingsCell" id="3hA-o2-IK5" customClass="SettingsTableViewCell" customModule="Applitude" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hA-o2-IK5" id="YsB-eM-Sq2">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FnM-dh-tmu">
-                                            <rect key="frame" x="541" y="11" width="51" height="22"/>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FnM-dh-tmu">
+                                            <rect key="frame" x="541" y="6" width="51" height="31"/>
                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                             <connections>
                                                 <action selector="cellSwitchValueChanged:" destination="oI7-w4-Oml" eventType="valueChanged" id="MaY-Dl-iwl"/>
@@ -39,11 +39,9 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="6lX-nI-v6N" firstAttribute="leading" secondItem="YsB-eM-Sq2" secondAttribute="leading" constant="17" id="FwY-yo-hvu"/>
-                                        <constraint firstAttribute="bottom" secondItem="FnM-dh-tmu" secondAttribute="bottom" constant="11" id="ONE-86-If1"/>
-                                        <constraint firstAttribute="bottom" secondItem="6lX-nI-v6N" secondAttribute="bottom" constant="11.5" id="PIY-fJ-Uyt"/>
-                                        <constraint firstItem="6lX-nI-v6N" firstAttribute="top" secondItem="YsB-eM-Sq2" secondAttribute="top" constant="11" id="Ran-WP-cby"/>
+                                        <constraint firstItem="FnM-dh-tmu" firstAttribute="centerY" secondItem="6lX-nI-v6N" secondAttribute="centerY" id="Tzp-wT-RIs"/>
+                                        <constraint firstItem="6lX-nI-v6N" firstAttribute="centerY" secondItem="YsB-eM-Sq2" secondAttribute="centerY" id="ZCN-0C-9bl"/>
                                         <constraint firstAttribute="trailing" secondItem="FnM-dh-tmu" secondAttribute="trailing" constant="10" id="qGw-m7-j2g"/>
-                                        <constraint firstItem="FnM-dh-tmu" firstAttribute="top" secondItem="YsB-eM-Sq2" secondAttribute="top" constant="11" id="vXi-gN-jmT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -61,7 +59,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dX2-XJ-mfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-441" y="610"/>
+            <point key="canvasLocation" x="1264" y="610"/>
         </scene>
         <!--DagensTableViewC-->
         <scene sceneID="Qcg-cA-KY3">

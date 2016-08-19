@@ -11,11 +11,15 @@ class Settings: NSObject {
     // Singleton: Available globally, max. one instance
     static let sharedInstance = Settings()
     
-    var themeColor: UIColor
+    private(set) var themeColor: UIColor {
+        didSet {
+            switchThemeForRootViewController()
+        }
+    }
     
     // Array for loading table view cells - may be reordered or split.
     let settings: [(key: SettingsKey, title: String)] = [
-        (.BlackTheme, "Black Theme Color"),
+        (.BlackTheme, "Dark Theme"),
         (.Veggie, "Veggie"),
         (.Gluten, "Gluten")
     ]
@@ -36,18 +40,13 @@ class Settings: NSObject {
         switch setting.key {
         case .BlackTheme:
             themeColor = value ? blackColor : redColor
-            switchThemeColor(value)
         default: break
         }
     }
-    
-    func switchThemeColor(black: Bool) {
-        print("switch-theme-color")
-        if let rootViewController = (UIApplication.sharedApplication().delegate as! AppDelegate).window?.rootViewController as? UINavigationController {
+
+    func switchThemeForRootViewController() {
+        if let rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController {
             rootViewController.navigationBar.barTintColor = themeColor
-            print("theme-color-set")
-        } else {
-            print("switch-theme-color-failed")
         }
     }
     
