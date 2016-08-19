@@ -17,6 +17,7 @@ class DagensRestaurantTableViewCell: UITableViewCell {
     
     func loadCell(title: String, opening: String, distance: String) {
         titleLabel.text = title
+        openingLabel.text = opening
         distanceLabel.text = distance
         
         setColors()

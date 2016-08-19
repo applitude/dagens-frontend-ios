@@ -108,7 +108,7 @@
                                                 <constraint firstItem="I1h-92-XBN" firstAttribute="centerX" secondItem="bZ0-5N-mEL" secondAttribute="centerX" id="zII-yU-Ubj"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09.00 - 17.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vN1-V5-4NM" userLabel="openingLabel">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09.00 - 17.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vN1-V5-4NM" userLabel="openingLabel">
                                             <rect key="frame" x="20" y="53.5" width="75" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -119,8 +119,10 @@
                                     <constraints>
                                         <constraint firstItem="AlM-VF-tZ6" firstAttribute="leading" secondItem="lZE-Dh-ior" secondAttribute="leading" constant="20" id="3wQ-uT-vQ4"/>
                                         <constraint firstItem="AlM-VF-tZ6" firstAttribute="top" secondItem="lZE-Dh-ior" secondAttribute="top" constant="30" id="ChD-ec-qkT"/>
+                                        <constraint firstItem="bZ0-5N-mEL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AlM-VF-tZ6" secondAttribute="trailing" constant="30" id="UQu-h8-3fR"/>
                                         <constraint firstItem="bZ0-5N-mEL" firstAttribute="centerY" secondItem="lZE-Dh-ior" secondAttribute="centerY" id="c2K-nb-f37"/>
                                         <constraint firstItem="vN1-V5-4NM" firstAttribute="leading" secondItem="AlM-VF-tZ6" secondAttribute="leading" id="jXE-hv-tzj"/>
+                                        <constraint firstItem="bZ0-5N-mEL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vN1-V5-4NM" secondAttribute="trailing" constant="70" id="kvp-Fv-gIc"/>
                                         <constraint firstAttribute="trailing" secondItem="bZ0-5N-mEL" secondAttribute="trailing" constant="20" id="l5R-GM-mom"/>
                                         <constraint firstItem="vN1-V5-4NM" firstAttribute="top" secondItem="AlM-VF-tZ6" secondAttribute="bottom" constant="2" id="trj-Lh-KFz"/>
                                     </constraints>
@@ -139,13 +141,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ribollita med parmesan og krutonger." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfg-NG-OwB" userLabel="titleLabel">
-                                            <rect key="frame" x="20" y="18" width="555" height="21.5"/>
+                                            <rect key="frame" x="20" y="18" width="302.5" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allergener: melk, nøtter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwv-Io-yMb" userLabel="allergiesLabel">
-                                            <rect key="frame" x="20" y="41.5" width="555" height="15"/>
+                                            <rect key="frame" x="20" y="41.5" width="133" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -154,10 +156,10 @@
                                     <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="xwv-Io-yMb" firstAttribute="top" secondItem="Dfg-NG-OwB" secondAttribute="bottom" constant="2" id="1xN-Bf-ooV"/>
-                                        <constraint firstItem="xwv-Io-yMb" firstAttribute="trailing" secondItem="Dfg-NG-OwB" secondAttribute="trailing" id="BAq-SV-7Yu"/>
-                                        <constraint firstAttribute="trailing" secondItem="Dfg-NG-OwB" secondAttribute="trailing" constant="25" id="IfP-12-iWs"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dfg-NG-OwB" secondAttribute="trailing" constant="25" id="IfP-12-iWs"/>
                                         <constraint firstItem="Dfg-NG-OwB" firstAttribute="top" secondItem="ROh-g8-IOO" secondAttribute="topMargin" constant="10" id="P1e-QQ-KrT"/>
                                         <constraint firstItem="xwv-Io-yMb" firstAttribute="leading" secondItem="Dfg-NG-OwB" secondAttribute="leading" id="gyB-ZG-ewg"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xwv-Io-yMb" secondAttribute="trailing" constant="25" id="lMr-LF-mUP"/>
                                         <constraint firstItem="Dfg-NG-OwB" firstAttribute="leading" secondItem="ROh-g8-IOO" secondAttribute="leading" constant="20" id="tho-vl-GwM"/>
                                     </constraints>
                                 </tableViewCellContentView>

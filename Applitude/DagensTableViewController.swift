@@ -6,17 +6,9 @@ class DagensTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
         
         // Register to receive notifications that we'll post when the dishes collection is updated
         NSNotificationCenter.defaultCenter().addObserver(tableView, selector: #selector(UITableView.reloadData), name: "dishesUpdated", object: nil)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -39,27 +31,36 @@ class DagensTableViewController: UITableViewController {
             let restaurant = DataManager.sharedInstance.restaurants[indexPath.section]
 
             let title = restaurant.title
-            let opening = "09.00 - 17.00" // TODO
-            let rawDistance = restaurant.distanceFromUser ?? -1
+            var opening = ""
+            restaurant.opening.forEach { opening += "\($0.0) \($0.1), " }
+            opening = String(opening.characters.dropLast(2))
+            let rawDistance = restaurant.distanceFromUser
 
             let distance = formatDistanceForPresentation(rawDistance)
 
-            cell.loadCell(title, opening: opening, distance: distance ?? "")
+            cell.loadCell(title, opening: opening, distance: distance)
 
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("dishCell", forIndexPath: indexPath) as! DagensDishTableViewCell
+
             let dish = DataManager.sharedInstance.restaurants[indexPath.section].dishes![indexPath.row - 1]
+
             cell.loadCell(dish)
+
             return cell
         }
     }
 
     // TODO: Remove duplicate code, test
-    func formatDistanceForPresentation(distance: Double) -> String? {
+    func formatDistanceForPresentation(distance: Double?) -> String {
+        guard let distance = distance else {
+            return "? km"
+        }
+
         let distanceString = String(Int(distance))
 
-        var formattedDistance: String?
+        let formattedDistance: String
         switch distanceString.characters.count {
         case 1...2:
             let meters = String(Int(distance))
@@ -72,7 +73,8 @@ class DagensTableViewController: UITableViewController {
             let kiloMeters = round(distance / 100) / 10
             let kiloMetersShortened = String(kiloMeters).substringWithRange(String(kiloMeters).characters.startIndex ..< String(kiloMeters).characters.startIndex.advancedBy(2)).stringByReplacingOccurrencesOfString(".", withString: ",")
             formattedDistance = "\(kiloMetersShortened) km"
-        default: break
+        default:
+            formattedDistance = ""
         }
 
         return formattedDistance

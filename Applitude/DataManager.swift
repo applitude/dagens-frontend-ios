@@ -16,13 +16,6 @@ class DataManager: NSObject {
         }
         set(newValue) {
             storedRestaurants = newValue.filter { $0.dishes?.count > 0 }
-
-            guard CLLocationManager.authorizationStatus() != .Denied else {
-                NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
-                print("dishes-updated-by-status-denied")
-                return
-            }
-
             sortRestaurantsByUserLocation()
         }
     }
@@ -55,13 +48,13 @@ class DataManager: NSObject {
         locationManager.startUpdatingLocation()
     }
 
-    // Required for sortRestaurantsByUserLocation() to return unless both variables have an updated value
-    func prepareForResumingLocationUpdates() {
-        userLocation = nil
-        storedRestaurants = [Restaurant]()
-    }
-
     private func sortRestaurantsByUserLocation() {
+        guard CLLocationManager.authorizationStatus() != .Denied else {
+            NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
+            print("dishes-updated")
+            return
+        }
+
         guard let userLocation = userLocation where !storedRestaurants.isEmpty else {
             return
         }
@@ -76,7 +69,7 @@ class DataManager: NSObject {
         storedRestaurants.sortInPlace { $0.distanceFromUser < $1.distanceFromUser }
 
         NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
-        print("dishes-updated-by-user-location")
+        print("dishes-updated")
     }
 
 }
