@@ -25,7 +25,7 @@ class HTTPController: NSObject {
                     return
                 }
                 
-                //print(JSON(data: dataFromString))
+//                print(JSON(data: dataFromString))
                 self.parseJSON(JSON(data: dataFromString))
                 
         }
@@ -60,31 +60,15 @@ class HTTPController: NSObject {
                     continue
                 }
 
-                // Find price info
-                var price: String?
+                let priceJSON = dateJSON.filter { _, dishOrPriceJSON in dishOrPriceJSON["type"] == "Pris" }.first?.1
+                let price = priceJSON?["name"].stringValue
 
-                for (_, dishOrPriceJSON): (String, JSON) in dateJSON {
-
-                    if dishOrPriceJSON["type"].stringValue == "Pris" {
-                        price = dishOrPriceJSON["name"].stringValue
-                        break
-                    }
-
-                }
-
-                // Add dishes
-                for (_, dishOrPriceJSON): (String, JSON) in dateJSON {
-                    
-                    guard dishOrPriceJSON["type"].stringValue != "Pris" else {
-                        continue
-                    }
-                    
-                    let dish = parseDishJSON(dishOrPriceJSON, price: price)
-                    
+                let dishJSONs = dateJSON.filter { _, dishOrPriceJSON in dishOrPriceJSON["type"] != "Pris" }
+                dishJSONs.forEach { _, dishJSON in
+                    let dish = parseDishJSON(dishJSON, price: price)
                     dishes.append(dish)
-                    
                 }
-                
+
             }
             
             restaurant.setDishes(dishes)
@@ -146,7 +130,7 @@ class HTTPController: NSObject {
         var suffix = ""
         var allergies = [String]()
 
-        if let rangeOfKeyword = title.rangeOfString("Allergener:", options: [NSStringCompareOptions.BackwardsSearch, NSStringCompareOptions.CaseInsensitiveSearch]) {
+        if let rangeOfKeyword = title.rangeOfString("Allergener:", options: [.BackwardsSearch, .CaseInsensitiveSearch]) {
             suffix = String(title.characters.suffixFrom(rangeOfKeyword.endIndex))
             allergies = suffix.componentsSeparatedByString(", ")
             title = String(title.characters.prefixUpTo(rangeOfKeyword.startIndex))
