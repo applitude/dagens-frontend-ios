@@ -67,7 +67,7 @@ extension DataManager: CLLocationManagerDelegate {
             restaurant.distanceFromUser = distanceFromUser
         }
 
-        restaurants = storedRestaurants.sort { $0.distanceFromUser <= $1.distanceFromUser }
+        restaurants = storedRestaurants.sort { $0.distanceFromUser < $1.distanceFromUser }
     }
 
 }
