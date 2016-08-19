@@ -24,12 +24,11 @@ class SettingsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func loadCell(row: Int) {
-        let setting = Settings.sharedInstance.getSettingAtIndex(row)
-        
-        settingsLabel.text = setting
-        settingsSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(setting)
+    func loadCellForRow(row: Int, isOn: Bool, setting: SettingsKey) {
         settingsSwitch.tag = row
+        settingsSwitch.on = isOn
+
+        settingsLabel.text = setting.rawValue
     }
 
 }

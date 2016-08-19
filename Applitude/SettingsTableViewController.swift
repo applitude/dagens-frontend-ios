@@ -4,7 +4,7 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func cellSwitchValueChanged(sender: UISwitch) {
         
-        Settings.sharedInstance.setSettingAtIndex(sender.tag, value: sender.on)
+        Settings.sharedInstance.changeValueForSettingAtIndex(sender.tag, value: sender.on)
         
     }
 
@@ -14,12 +14,7 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -28,15 +23,17 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Settings.sharedInstance.getNumberOfSettings()
+        return Settings.sharedInstance.settings.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell", forIndexPath: indexPath) as! SettingsTableViewCell
 
-        // Configure the cell...
-        cell.loadCell(indexPath.row)
+        let setting = Settings.sharedInstance.settings[indexPath.row]
+        let isOn = NSUserDefaults.standardUserDefaults().boolForKey(setting.rawValue)
+
+        cell.loadCellForRow(indexPath.row, isOn: isOn, setting: setting)
 
         return cell
     }

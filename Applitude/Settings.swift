@@ -1,5 +1,11 @@
 import UIKit
 
+enum SettingsKey: String {
+    case BlackTheme = "blackTheme"
+    case Veggie = "veggie"
+    case Gluten = "gluten"
+}
+
 class Settings: NSObject {
     
     // Singleton: Available globally, max. one instance
@@ -7,52 +13,31 @@ class Settings: NSObject {
     
     var themeColor: UIColor
     
-    // The only structure containing the settings keys - should not be reordered.
-    private struct SettingsKeys {
-        static let blackTheme = "blackTheme"
-        static let veggie = "veggie"
-        static let gluten = "gluten"
-    }
-    
     // Array for loading table view cells - may be reordered or split.
-    private var settings: [String] = [
-        
-        SettingsKeys.blackTheme,
-        SettingsKeys.veggie,
-        SettingsKeys.gluten
-        
+    let settings: [SettingsKey] = [
+        .BlackTheme,
+        .Veggie,
+        .Gluten
     ]
     
     private let redColor = UIColor(red: 251/255.0, green: 84/255.0, blue: 110/255.0, alpha: 1)
     private let blackColor = UIColor.blackColor() // Temporary value, should be grey-ish
     
     private override init() {
-        themeColor = (NSUserDefaults.standardUserDefaults().boolForKey(SettingsKeys.blackTheme)) ? blackColor : redColor
-    }
-   
-    func getSettingAtIndex(index:Int) -> String {
-        return settings[index]
+        themeColor = NSUserDefaults.standardUserDefaults().boolForKey(SettingsKey.BlackTheme.rawValue) ? blackColor : redColor
     }
     
-    func getNumberOfSettings() -> Int {
-        return settings.count
-    }
-    
-    func setSettingAtIndex(index: Int, value: Bool) {
-        NSUserDefaults.standardUserDefaults().setBool(value, forKey: settings[index])
+    func changeValueForSettingAtIndex(index: Int, value: Bool) {
+        let setting = settings[index]
+
+        NSUserDefaults.standardUserDefaults().setBool(value, forKey: setting.rawValue)
         
         // Handles immediate changes
-        switch settings[index] {
-            
-        case SettingsKeys.blackTheme:
+        switch setting {
+        case .BlackTheme:
             themeColor = value ? blackColor : redColor
             switchThemeColor(value)
-            
-        case "noe":
-            print("noe")
-            
         default: break
-            
         }
     }
     
