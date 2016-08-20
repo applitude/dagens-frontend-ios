@@ -16,7 +16,7 @@ class DagensRestaurantTableViewCell: UITableViewCell {
     }
     
     func setColors() {
-        let color = Settings.sharedInstance.themeColor
+        let color = SettingsManager.sharedInstance.themeColor
         
         titleLabel.textColor = color
         distanceLabel.textColor = color

@@ -3,7 +3,7 @@ import UIKit
 class SettingsTableViewController: UITableViewController {
     
     @IBAction func cellSwitchValueChanged(sender: UISwitch) {
-        Settings.sharedInstance.changeValueForSettingAtIndex(sender.tag, value: sender.on)
+        SettingsManager.sharedInstance.changeValueForSettingAtIndex(sender.tag, value: sender.on)
     }
 
     override func viewDidLoad() {
@@ -18,14 +18,14 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Settings.sharedInstance.settings.count
+        return SettingsManager.sharedInstance.settings.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell", forIndexPath: indexPath) as! SettingsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("SettingCell", forIndexPath: indexPath) as! SettingsTableViewCell
 
-        let setting = Settings.sharedInstance.settings[indexPath.row]
+        let setting = SettingsManager.sharedInstance.settings[indexPath.row]
         let isOn = NSUserDefaults.standardUserDefaults().boolForKey(setting.key.rawValue)
         let title = setting.title
 

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DataManager.sharedInstance.setupLocationUpdates()
 
         if let navigationController = window?.rootViewController as? UINavigationController {
-            navigationController.navigationBar.barTintColor = Settings.sharedInstance.themeColor
+            navigationController.navigationBar.barTintColor = SettingsManager.sharedInstance.themeColor
 
             if let shadowLine = navigationController.navigationBar.subviews[0].subviews[0] as? UIImageView {
                 shadowLine.hidden = true

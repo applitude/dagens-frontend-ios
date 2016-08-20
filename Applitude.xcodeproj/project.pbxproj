@@ -16,11 +16,11 @@
 		4F99CC075E8DAA787D040893 /* Pods_Applitude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E08A31EDF7A33C2007FE7276 /* Pods_Applitude.framework */; };
 		4FD9B5311C778F8200AA204D /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD9B5301C778F8200AA204D /* SettingsTableViewCell.swift */; };
 		6EF674F61C6E545B00B8C3F2 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF674F51C6E545B00B8C3F2 /* Dish.swift */; };
-		9F7AAAC91C99C39D00320B31 /* RESTController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AAAC81C99C39D00320B31 /* RESTController.swift */; };
+		9F7AAAC91C99C39D00320B31 /* HTTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AAAC81C99C39D00320B31 /* HTTPController.swift */; };
 		9F8DD5CD1CE60496002652A3 /* DagensDishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8DD5CC1CE60496002652A3 /* DagensDishTableViewCell.swift */; };
 		9F8DF78C1D686AD400D2F25B /* DagensDateTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F8DF78B1D686AD400D2F25B /* DagensDateTableViewHeader.xib */; };
 		9F8DF78E1D686C8700D2F25B /* DagensDateTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8DF78D1D686C8700D2F25B /* DagensDateTableViewHeader.swift */; };
-		9F937B751C6E67ED00AB947D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F937B741C6E67ED00AB947D /* Settings.swift */; };
+		9F937B751C6E67ED00AB947D /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F937B741C6E67ED00AB947D /* SettingsManager.swift */; };
 		9F937B771C6E6A5600AB947D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F937B761C6E6A5600AB947D /* DataManager.swift */; };
 		9F937B7D1C6E750A00AB947D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F937B7C1C6E750A00AB947D /* SettingsTableViewController.swift */; };
 		9FBA773B1C777D0200AB6271 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA773A1C777D0200AB6271 /* Restaurant.swift */; };
@@ -38,11 +38,11 @@
 		4FD9B5301C778F8200AA204D /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		65A506F4DA927E13C71A8CD4 /* Pods-Applitude.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applitude.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Applitude/Pods-Applitude.debug.xcconfig"; sourceTree = "<group>"; };
 		6EF674F51C6E545B00B8C3F2 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
-		9F7AAAC81C99C39D00320B31 /* RESTController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTController.swift; sourceTree = "<group>"; };
+		9F7AAAC81C99C39D00320B31 /* HTTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPController.swift; sourceTree = "<group>"; };
 		9F8DD5CC1CE60496002652A3 /* DagensDishTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DagensDishTableViewCell.swift; sourceTree = "<group>"; };
 		9F8DF78B1D686AD400D2F25B /* DagensDateTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DagensDateTableViewHeader.xib; sourceTree = "<group>"; };
 		9F8DF78D1D686C8700D2F25B /* DagensDateTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DagensDateTableViewHeader.swift; sourceTree = "<group>"; };
-		9F937B741C6E67ED00AB947D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		9F937B741C6E67ED00AB947D /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		9F937B761C6E6A5600AB947D /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		9F937B7C1C6E750A00AB947D /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9FBA773A1C777D0200AB6271 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -147,8 +147,8 @@
 			children = (
 				9F1D27721D6672B700CCF6CD /* DTOs */,
 				9F937B761C6E6A5600AB947D /* DataManager.swift */,
-				9F7AAAC81C99C39D00320B31 /* RESTController.swift */,
-				9F937B741C6E67ED00AB947D /* Settings.swift */,
+				9F7AAAC81C99C39D00320B31 /* HTTPController.swift */,
+				9F937B741C6E67ED00AB947D /* SettingsManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -315,13 +315,13 @@
 				6EF674F61C6E545B00B8C3F2 /* Dish.swift in Sources */,
 				4F7C754E1C6E3FF9001EA5C8 /* DagensRestaurantTableViewCell.swift in Sources */,
 				4FD9B5311C778F8200AA204D /* SettingsTableViewCell.swift in Sources */,
-				9F7AAAC91C99C39D00320B31 /* RESTController.swift in Sources */,
+				9F7AAAC91C99C39D00320B31 /* HTTPController.swift in Sources */,
 				4F7C754C1C6E3DF3001EA5C8 /* DagensTableViewController.swift in Sources */,
 				9F8DF78E1D686C8700D2F25B /* DagensDateTableViewHeader.swift in Sources */,
 				4F7C753A1C6E3AF4001EA5C8 /* AppDelegate.swift in Sources */,
 				9FBA773B1C777D0200AB6271 /* Restaurant.swift in Sources */,
 				9F937B771C6E6A5600AB947D /* DataManager.swift in Sources */,
-				9F937B751C6E67ED00AB947D /* Settings.swift in Sources */,
+				9F937B751C6E67ED00AB947D /* SettingsManager.swift in Sources */,
 				9F937B7D1C6E750A00AB947D /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

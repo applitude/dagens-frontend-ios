@@ -6,10 +6,10 @@ enum SettingsKey: String {
     case Gluten = "gluten"
 }
 
-class Settings: NSObject {
+class SettingsManager: NSObject {
     
     // Singleton: Available globally, max. one instance
-    static let sharedInstance = Settings()
+    static let sharedInstance = SettingsManager()
     
     private(set) var themeColor: UIColor {
         didSet {

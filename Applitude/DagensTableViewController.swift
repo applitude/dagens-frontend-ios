@@ -10,7 +10,7 @@ class DagensTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Register to receive notifications that we'll post when the dishes collection is updated
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DagensTableViewController.reloadData), name: "dishesUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DagensTableViewController.reloadData), name: "DishesUpdated", object: nil)
 
         headerView = NSBundle.mainBundle().loadNibNamed("DagensDateTableViewHeader", owner: self, options: nil).first as? DagensDateTableViewHeader
     }
@@ -47,7 +47,7 @@ class DagensTableViewController: UITableViewController {
         let restaurant = DataManager.sharedInstance.restaurants[indexPath.section]
 
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! DagensRestaurantTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("RestaurantCell", forIndexPath: indexPath) as! DagensRestaurantTableViewCell
 
             let title = restaurant.title
             var opening = ""
@@ -60,7 +60,7 @@ class DagensTableViewController: UITableViewController {
             cell.loadCell(title, opening: opening, distance: distance)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("dishCell", forIndexPath: indexPath) as! DagensDishTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("DishCell", forIndexPath: indexPath) as! DagensDishTableViewCell
 
             let dish = restaurant.dishes![indexPath.row - 1]
 

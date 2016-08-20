@@ -32,7 +32,7 @@ class DataManager: NSObject {
 
     private var storedRestaurants = [Restaurant]() {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("DishesUpdated", object: nil)
         }
     }
 
