@@ -15,18 +15,30 @@ class DataManager: NSObject {
             return storedRestaurants
         }
         set(newValue) {
-            storedRestaurants = newValue.filter { $0.dishes?.count > 0 }
-            sortRestaurantsByUserLocation()
+            let filteredRestaurants = newValue.filter { $0.dishes?.count > 0 }
+            let sortedRestaurants = sortRestaurantsArrayByUserLocation(filteredRestaurants)
+            storedRestaurants = sortedRestaurants
         }
     }
 
     private var userLocation: CLLocation? {
         didSet {
-            sortRestaurantsByUserLocation()
+            if userLocation != nil {
+                let sortedRestaurants = sortRestaurantsArrayByUserLocation(storedRestaurants)
+                storedRestaurants = sortedRestaurants
+            }
         }
     }
 
-    private var storedRestaurants = [Restaurant]()
+    private var storedRestaurants = [Restaurant]() {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
+        }
+    }
+
+    func prepareForInactiveState() {
+        userLocation = nil // Prevents unnecessary sorting with an outdated location
+    }
 
     // MARK: RESTController
     
@@ -48,28 +60,25 @@ class DataManager: NSObject {
         locationManager.startUpdatingLocation()
     }
 
-    private func sortRestaurantsByUserLocation() {
-        guard CLLocationManager.authorizationStatus() != .Denied else {
-            NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
-            print("dishes-updated")
-            return
+    private func sortRestaurantsArrayByUserLocation(restaurantsArray: [Restaurant]) -> [Restaurant] {
+        guard let userLocation = userLocation where !restaurantsArray.isEmpty else {
+            return restaurantsArray
         }
 
-        guard let userLocation = userLocation where !storedRestaurants.isEmpty else {
-            return
-        }
+        var restaurantsArray = restaurantsArray
 
-        storedRestaurants.forEach { restaurant in
+        restaurantsArray.forEach { restaurant in
             let restaurantLocation = CLLocation(latitude: restaurant.coordinates.lat, longitude: restaurant.coordinates.long)
             let distanceFromUser = userLocation.distanceFromLocation(restaurantLocation)
 
             restaurant.distanceFromUser = distanceFromUser
         }
 
-        storedRestaurants.sortInPlace { $0.distanceFromUser < $1.distanceFromUser }
+        restaurantsArray.sortInPlace { $0.distanceFromUser < $1.distanceFromUser }
 
-        NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
-        print("dishes-updated")
+        print("restaurants-array-sorted")
+
+        return restaurantsArray
     }
 
 }

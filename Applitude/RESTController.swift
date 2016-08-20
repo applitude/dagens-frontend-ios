@@ -6,6 +6,8 @@ class HTTPController: NSObject {
     
     private let endpoint: URLStringConvertible = "https://s3-eu-west-1.amazonaws.com/todays-dinner/sioapi.json"
 
+    // How long time before midnight should we begin displaying the next day's dishes?
+    private var offset: NSTimeInterval = 120000
 
     func requestDishes() {
         // Change the cache policy so that no existing cache data should be used to satisfy a URL load request.
@@ -49,7 +51,7 @@ class HTTPController: NSObject {
             
             for (dateString, dateJSON): (String, JSON) in dayArray {
 
-                guard let date = parseDateString(dateString) else {
+                guard let date = parseDateString(dateString)?.dateByAddingTimeInterval(offset) else {
                     // TODO: Report error or return nil
                     return
                 }
@@ -77,7 +79,7 @@ class HTTPController: NSObject {
         }
 
         DataManager.sharedInstance.restaurants = restaurants
-
+        // offset = 0 // Uncomment for mocking time change
     }
 
     private func parseRestaurantJSON(restaurantJSON: JSON) -> Restaurant {
