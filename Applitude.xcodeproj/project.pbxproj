@@ -18,6 +18,8 @@
 		6EF674F61C6E545B00B8C3F2 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF674F51C6E545B00B8C3F2 /* Dish.swift */; };
 		9F7AAAC91C99C39D00320B31 /* RESTController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AAAC81C99C39D00320B31 /* RESTController.swift */; };
 		9F8DD5CD1CE60496002652A3 /* DagensDishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8DD5CC1CE60496002652A3 /* DagensDishTableViewCell.swift */; };
+		9F8DF78C1D686AD400D2F25B /* DagensDateTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F8DF78B1D686AD400D2F25B /* DagensDateTableViewHeader.xib */; };
+		9F8DF78E1D686C8700D2F25B /* DagensDateTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8DF78D1D686C8700D2F25B /* DagensDateTableViewHeader.swift */; };
 		9F937B751C6E67ED00AB947D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F937B741C6E67ED00AB947D /* Settings.swift */; };
 		9F937B771C6E6A5600AB947D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F937B761C6E6A5600AB947D /* DataManager.swift */; };
 		9F937B7D1C6E750A00AB947D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F937B7C1C6E750A00AB947D /* SettingsTableViewController.swift */; };
@@ -38,6 +40,8 @@
 		6EF674F51C6E545B00B8C3F2 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		9F7AAAC81C99C39D00320B31 /* RESTController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTController.swift; sourceTree = "<group>"; };
 		9F8DD5CC1CE60496002652A3 /* DagensDishTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DagensDishTableViewCell.swift; sourceTree = "<group>"; };
+		9F8DF78B1D686AD400D2F25B /* DagensDateTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DagensDateTableViewHeader.xib; sourceTree = "<group>"; };
+		9F8DF78D1D686C8700D2F25B /* DagensDateTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DagensDateTableViewHeader.swift; sourceTree = "<group>"; };
 		9F937B741C6E67ED00AB947D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		9F937B761C6E6A5600AB947D /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		9F937B7C1C6E750A00AB947D /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 			children = (
 				4F7C754D1C6E3FF9001EA5C8 /* DagensRestaurantTableViewCell.swift */,
 				9F8DD5CC1CE60496002652A3 /* DagensDishTableViewCell.swift */,
+				9F8DF78D1D686C8700D2F25B /* DagensDateTableViewHeader.swift */,
+				9F8DF78B1D686AD400D2F25B /* DagensDateTableViewHeader.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -230,6 +236,7 @@
 			files = (
 				4F7C75441C6E3AF4001EA5C8 /* LaunchScreen.storyboard in Resources */,
 				4F7C75411C6E3AF4001EA5C8 /* Assets.xcassets in Resources */,
+				9F8DF78C1D686AD400D2F25B /* DagensDateTableViewHeader.xib in Resources */,
 				4F7C753F1C6E3AF4001EA5C8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +317,7 @@
 				4FD9B5311C778F8200AA204D /* SettingsTableViewCell.swift in Sources */,
 				9F7AAAC91C99C39D00320B31 /* RESTController.swift in Sources */,
 				4F7C754C1C6E3DF3001EA5C8 /* DagensTableViewController.swift in Sources */,
+				9F8DF78E1D686C8700D2F25B /* DagensDateTableViewHeader.swift in Sources */,
 				4F7C753A1C6E3AF4001EA5C8 /* AppDelegate.swift in Sources */,
 				9FBA773B1C777D0200AB6271 /* Restaurant.swift in Sources */,
 				9F937B771C6E6A5600AB947D /* DataManager.swift in Sources */,

@@ -1,6 +1,8 @@
 import UIKit
 
 class DagensTableViewController: UITableViewController {
+
+    private var headerView: DagensDateTableViewHeader?
     
     // MARK: - View controller life cycle
     
@@ -8,7 +10,24 @@ class DagensTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Register to receive notifications that we'll post when the dishes collection is updated
-        NSNotificationCenter.defaultCenter().addObserver(tableView, selector: #selector(UITableView.reloadData), name: "dishesUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DagensTableViewController.reloadData), name: "dishesUpdated", object: nil)
+
+        headerView = NSBundle.mainBundle().loadNibNamed("DagensDateTableViewHeader", owner: self, options: nil).first as? DagensDateTableViewHeader
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        headerView?.frame.size.height = 60
+        tableView.tableHeaderView = headerView
+    }
+
+    @objc private func reloadData() {
+        tableView.reloadData()
+
+        var title = "Viser menyen for i "
+        title += DataManager.sharedInstance.displaysTodaysDishes ? "dag." : "morgen."
+        headerView?.titleLabel.text = title
     }
 
     // MARK: - Table view data source
@@ -25,10 +44,10 @@ class DagensTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let restaurant = DataManager.sharedInstance.restaurants[indexPath.section]
+
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! DagensRestaurantTableViewCell
-
-            let restaurant = DataManager.sharedInstance.restaurants[indexPath.section]
 
             let title = restaurant.title
             var opening = ""
@@ -39,15 +58,13 @@ class DagensTableViewController: UITableViewController {
             let distance = formatDistanceForPresentation(rawDistance)
 
             cell.loadCell(title, opening: opening, distance: distance)
-
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("dishCell", forIndexPath: indexPath) as! DagensDishTableViewCell
 
-            let dish = DataManager.sharedInstance.restaurants[indexPath.section].dishes![indexPath.row - 1]
+            let dish = restaurant.dishes![indexPath.row - 1]
 
             cell.loadCell(dish)
-
             return cell
         }
     }
@@ -79,15 +96,5 @@ class DagensTableViewController: UITableViewController {
 
         return formattedDistance
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -36,6 +36,13 @@ class DataManager: NSObject {
         }
     }
 
+    // How long time before midnight should we begin displaying tomorrow's dishes?
+    let displaysTodaysDishesOffset: NSTimeInterval = 60 * 60 * 5
+
+    var displaysTodaysDishes: Bool {
+        return NSCalendar.currentCalendar().isDateInToday(NSDate().dateByAddingTimeInterval(displaysTodaysDishesOffset))
+    }
+
     func prepareForInactiveState() {
         userLocation = nil // Prevents unnecessary sorting with an outdated location
     }
