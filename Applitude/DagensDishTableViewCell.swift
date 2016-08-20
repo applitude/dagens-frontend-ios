@@ -1,11 +1,3 @@
-//
-//  DagensDishTableViewCell.swift
-//  Applitude
-//
-//  Created by Gaute Solheim on 13.05.2016.
-//  Copyright © 2016 Applitude. All rights reserved.
-//
-
 import UIKit
 
 class DagensDishTableViewCell: UITableViewCell {

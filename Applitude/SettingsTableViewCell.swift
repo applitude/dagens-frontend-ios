@@ -1,11 +1,3 @@
-//
-//  SettingsTableViewCell.swift
-//  Applitude
-//
-//  Created by Anders Orset on 19.02.2016.
-//  Copyright © 2016 Applitude. All rights reserved.
-//
-
 import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
