@@ -148,9 +148,6 @@ class HTTPController: NSObject {
 //            }
 //        }
 
-        // Uncomment for a rough test of allergies parsing
-//        print("title: \(title), allergies-count: \(allergies.count)")
-
         let dish = Dish(title: title, price: price, veggie: veggie, allergies: allergies)
 
         return dish
