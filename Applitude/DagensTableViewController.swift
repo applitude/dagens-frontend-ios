@@ -1,87 +1,100 @@
-//
-//  DagensTableViewController.swift
-//  Applitude
-//
-//  Created by Anders Orset on 12.02.2016.
-//  Copyright © 2016 Applitude. All rights reserved.
-//
-//  The app's main view.
-//
-//  Detailed explanation of the cell expansion/contraction: stackoverflow.com/a/29851944.
-//
-
 import UIKit
 
 class DagensTableViewController: UITableViewController {
+
+    private var headerView: DagensDateTableViewHeader?
     
-    // Keeps track of which cell, if any, is currently expanded
-    private var expandedIndexPath: NSIndexPath?
-    
-    // MARK: View controller life cycle
+    // MARK: - View controller life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
         
         // Register to receive notifications that we'll post when the dishes collection is updated
-        NSNotificationCenter.defaultCenter().addObserver(tableView, selector: #selector(UITableView.reloadData), name: "dishesUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DagensTableViewController.reloadData), name: "DishesUpdated", object: nil)
+
+        headerView = NSBundle.mainBundle().loadNibNamed("DagensDateTableViewHeader", owner: self, options: nil).first as? DagensDateTableViewHeader
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        headerView?.frame.size.height = 60
+        tableView.tableHeaderView = headerView
     }
 
-    // MARK: Table view data source
+    @objc private func reloadData() {
+        tableView.reloadData()
+
+        var title = "Viser menyen for i "
+        title += DataManager.sharedInstance.displaysTodaysDishes ? "dag." : "morgen."
+        headerView?.titleLabel.text = title
+    }
+
+    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return DataManager.sharedInstance.restaurants.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataManager.sharedInstance.getNumberOfDishes()
+        if let dishes = DataManager.sharedInstance.restaurants[section].dishes {
+            return dishes.count + 1
+        }
+        return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("dagensCell", forIndexPath: indexPath) as! DagensTableViewCell
+        let restaurant = DataManager.sharedInstance.restaurants[indexPath.section]
 
-        // Configure the cell...
-        cell.loadCell(DataManager.sharedInstance.getDishAtIndex(indexPath.row))
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("RestaurantCell", forIndexPath: indexPath) as! DagensRestaurantTableViewCell
 
-        return cell
-    }
-    
-    // MARK: Table view delegate (manages cell expansion/contraction)
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        // if: User selected expanded cell
-        if expandedIndexPath == indexPath {
-            expandedIndexPath = nil
+            let title = restaurant.title
+            var opening = ""
+            restaurant.opening.forEach { opening += "\($0.0) \($0.1), " }
+            opening = String(opening.characters.dropLast(2))
+            let rawDistance = restaurant.distanceFromUser
+
+            let distance = formatDistanceForPresentation(rawDistance)
+
+            cell.loadCell(title, opening: opening, distance: distance)
+            return cell
         } else {
-            expandedIndexPath = indexPath
+            let cell = tableView.dequeueReusableCellWithIdentifier("DishCell", forIndexPath: indexPath) as! DagensDishTableViewCell
+
+            let dish = restaurant.dishes![indexPath.row - 1]
+
+            cell.loadCell(dish)
+            return cell
         }
-        
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let contractedHeight: CGFloat = 115
-        let expandedHeight: CGFloat = 300
-
-        return indexPath == expandedIndexPath ? expandedHeight : contractedHeight
     }
 
-    /*
-    // MARK: - Navigation
+    // TODO: Remove duplicate code, test
+    func formatDistanceForPresentation(distance: Double?) -> String {
+        guard let distance = distance else {
+            return "? km"
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let distanceString = String(Int(distance))
+
+        let formattedDistance: String
+        switch distanceString.characters.count {
+        case 1...2:
+            let meters = String(Int(distance))
+            formattedDistance = "\(meters) m"
+        case 3...4:
+            let kiloMeters = round(distance / 100) / 10
+            let kiloMetersShortened = String(kiloMeters).substringWithRange(String(kiloMeters).characters.startIndex ..< String(kiloMeters).characters.startIndex.advancedBy(3)).stringByReplacingOccurrencesOfString(".", withString: ",")
+            formattedDistance = "\(kiloMetersShortened) km"
+        case 5:
+            let kiloMeters = round(distance / 100) / 10
+            let kiloMetersShortened = String(kiloMeters).substringWithRange(String(kiloMeters).characters.startIndex ..< String(kiloMeters).characters.startIndex.advancedBy(2)).stringByReplacingOccurrencesOfString(".", withString: ",")
+            formattedDistance = "\(kiloMetersShortened) km"
+        default:
+            formattedDistance = ""
+        }
+
+        return formattedDistance
     }
-    */
 
 }

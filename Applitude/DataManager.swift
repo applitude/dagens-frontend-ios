@@ -1,14 +1,5 @@
-//
-//  ServerManager.swift
-//  Applitude
-//
-//  Created by Gaute Solheim on 12.02.2016.
-//  Copyright © 2016 Applitude. All rights reserved.
-//
-//  Handles all communication with dagens-backend (effectively Amazon S3), and saves the received data locally.
-//
-
 import Foundation
+import CoreLocation
 
 class DataManager: NSObject {
     
@@ -16,22 +7,44 @@ class DataManager: NSObject {
     static let sharedInstance = DataManager()
     private override init() {}
     
-    private var httpController = HTTPController()
+    private let httpController = HTTPController()
+    private let locationManager = CLLocationManager()
     
-    var dishes = [Dish]() {
-        didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName("dishesUpdated", object: nil)
+    var restaurants: [Restaurant] {
+        get {
+            return storedRestaurants
+        }
+        set(newValue) {
+            let filteredRestaurants = newValue.filter { $0.dishes?.count > 0 }
+            let sortedRestaurants = sortRestaurantsArrayByUserLocation(filteredRestaurants)
+            storedRestaurants = sortedRestaurants
         }
     }
-    
-    // MARK: Getters
-    
-    func getNumberOfDishes() -> Int {
-        return dishes.count
+
+    private var userLocation: CLLocation? {
+        didSet {
+            if userLocation != nil {
+                let sortedRestaurants = sortRestaurantsArrayByUserLocation(storedRestaurants)
+                storedRestaurants = sortedRestaurants
+            }
+        }
     }
-    
-    func getDishAtIndex(index: Int) -> Dish {
-        return dishes[index]
+
+    private var storedRestaurants = [Restaurant]() {
+        didSet {
+            NSNotificationCenter.defaultCenter().postNotificationName("DishesUpdated", object: nil)
+        }
+    }
+
+    // How long time before midnight should we begin displaying tomorrow's dishes?
+    let displaysTodaysDishesOffset: NSTimeInterval = 60 * 60 * 5
+
+    var displaysTodaysDishes: Bool {
+        return NSCalendar.currentCalendar().isDateInToday(NSDate().dateByAddingTimeInterval(displaysTodaysDishesOffset))
+    }
+
+    func prepareForInactiveState() {
+        userLocation = nil // Prevents unnecessary sorting with an outdated location
     }
 
     // MARK: RESTController
@@ -39,5 +52,58 @@ class DataManager: NSObject {
     func fetchTodaysDinner() {
         httpController.requestDishes()
     }
-    
+
+    // MARK: Location services
+
+    func setupLocationUpdates() {
+        guard CLLocationManager.authorizationStatus() != .Denied else {
+            return
+        }
+
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 10
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+
+    private func sortRestaurantsArrayByUserLocation(restaurantsArray: [Restaurant]) -> [Restaurant] {
+        guard let userLocation = userLocation where !restaurantsArray.isEmpty else {
+            return restaurantsArray
+        }
+
+        var restaurantsArray = restaurantsArray
+
+        restaurantsArray.forEach { restaurant in
+            let restaurantLocation = CLLocation(latitude: restaurant.coordinates.lat, longitude: restaurant.coordinates.long)
+            let distanceFromUser = userLocation.distanceFromLocation(restaurantLocation)
+
+            restaurant.distanceFromUser = distanceFromUser
+        }
+
+        restaurantsArray.sortInPlace { $0.distanceFromUser < $1.distanceFromUser }
+
+        print("restaurants-array-sorted")
+
+        return restaurantsArray
+    }
+
 }
+
+// MARK: - CLLocationManagerDelegate
+
+extension DataManager: CLLocationManagerDelegate {
+
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("location-manager-did-update-locations")
+
+        userLocation = locations.first
+    }
+
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("location-manager-did-fail-with-error")
+        print(error)
+    }
+
+}
+

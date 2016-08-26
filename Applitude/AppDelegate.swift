@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Applitude
-//
-//  Created by Anders Orset on 12.02.2016.
-//  Copyright © 2016 Applitude. All rights reserved.
-//
-
 import UIKit
 import GoogleMaps
 
@@ -16,26 +8,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
         let googleMapsApiKey = "AIzaSyAcCCH8b9DkVVtm8oEkDVqhMl8gRYMf0X4"
         GMSServices.provideAPIKey(googleMapsApiKey)
-        
-        // Start fetching data from S3
-        DataManager.sharedInstance.fetchTodaysDinner()
-        
-        // Hide shadow line on bottom of navigation bar
-        let navigationController = self.window!.rootViewController! as! UINavigationController
-        navigationController.navigationBar.barTintColor = Settings.sharedInstance.themeColor
-        
-        if let shadowLine = navigationController.navigationBar.subviews[0].subviews[0] as? UIImageView {
-            shadowLine.hidden = true
+
+        DataManager.sharedInstance.setupLocationUpdates()
+
+        if let navigationController = window?.rootViewController as? UINavigationController {
+            navigationController.navigationBar.barTintColor = SettingsManager.sharedInstance.themeColor
+
+            if let shadowLine = navigationController.navigationBar.subviews[0].subviews[0] as? UIImageView {
+                shadowLine.hidden = true
+            }
         }
-        
+
         return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+
+        DataManager.sharedInstance.prepareForInactiveState()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -49,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+        DataManager.sharedInstance.fetchTodaysDinner()
     }
 
     func applicationWillTerminate(application: UIApplication) {
